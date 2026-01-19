@@ -1,0 +1,321 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>מוסדות בית שלמה | כולל אברכים ופעילויות – ראשון לציון</title>
+  <meta name="description" content="מוסדות בית שלמה – הרב שלמה דשן | כולל אברכים ופעילויות תורה וחסד בראשון לציון. תרומות, גלריה, פעילות ויצירת קשר." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- פס עליון קטן -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__tag">
+        כולל האברכים • תורה • חסד • חינוך • ראשון לציון
+      </div>
+      <div class="topbar__right">
+        <a class="topbar__link" href="#contact">יצירת קשר</a>
+        <span class="dot">•</span>
+        <a class="topbar__link" href="#donate">תרומות</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ניווט ראשי -->
+  <header class="header" id="home">
+    <div class="container header__inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">ב"ש</div>
+        <div class="brand__text">
+          <div class="brand__title">מוסדות בית שלמה</div>
+          <div class="brand__subtitle">הרב שלמה דשן • ראשון לציון</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="תפריט ראשי">
+        <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">תפריט</button>
+        <div class="nav__menu" id="navMenu">
+          <a class="nav__link" href="#home">דף הבית</a>
+          <a class="nav__link" href="#about">עלינו</a>
+          <a class="nav__link" href="#activity">הפעילות</a>
+          <a class="nav__link" href="#gallery">גלריה</a>
+          <a class="nav__link" href="#donate">תרומות</a>
+          <a class="nav__link" href="#contact">יצירת קשר</a>
+        </div>
+      </nav>
+
+      <!-- כפתור תרומה עגול מהבהב -->
+      <a class="donate-fab" id="donateFab" href="#" target="_blank" rel="noopener">
+        <span class="donate-fab__ring" aria-hidden="true"></span>
+        <span class="donate-fab__text">תרומה</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- הירו -->
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title">
+            מוסדות בית שלמה – תורה שמאירה את העיר
+          </h1>
+          <p class="hero__lead">
+            כולל אברכים ופעילויות תורה, חסד וחיזוק – בלב ראשון לציון.
+            כאן תוכלו להכיר את העשייה, לראות גלריה, ולמצוא דרך להתחבר ולסייע.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#about">הכירו אותנו</a>
+            <a class="btn btn--ghost" href="#activity">מה אנחנו עושים</a>
+          </div>
+
+          <div class="hero__stats" role="list">
+            <div class="stat" role="listitem">
+              <div class="stat__num">כולל</div>
+              <div class="stat__label">אברכים לומדים בעקביות</div>
+            </div>
+            <div class="stat" role="listitem">
+              <div class="stat__num">שיעורים</div>
+              <div class="stat__label">מסגרות חיזוק לקהילה</div>
+            </div>
+            <div class="stat" role="listitem">
+              <div class="stat__num">חסד</div>
+              <div class="stat__label">סיוע למשפחות לפי צורך</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__card">
+          <div class="hero__cardTop">
+            <div class="pill">חדש</div>
+            <div class="pill pill--soft">עמוד תרומות</div>
+          </div>
+
+          <h2 class="hero__cardTitle">שותפים בהחזקת התורה</h2>
+          <p class="hero__cardText">
+            תרומה מאובטחת בלחיצה אחת. בקרוב תכניס כאן את קישור התרומות שלך.
+          </p>
+
+          <div class="hero__cardActions">
+            <a class="btn btn--primary" href="#donate">לתרומות</a>
+            <a class="btn btn--ghost" href="#contact">דברו איתנו</a>
+          </div>
+
+          <div class="note">
+            טיפ: תרצה שאוסיף גם כפתור “ביט / העברה בנקאית / אשראי” מסודר?
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- עלינו -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">עלינו</h2>
+          <p class="section__subtitle">מי אנחנו, ולמה זה חשוב לעיר</p>
+        </div>
+
+        <div class="grid grid--2">
+          <div class="card">
+            <h3 class="card__title">החזון</h3>
+            <p class="card__text">
+              מוסדות בית שלמה פועלים לחיזוק התורה והיראה, לבניית קהילה חמה,
+              ולתמיכה במסגרות לימוד קבועות.
+            </p>
+            <ul class="list">
+              <li>כולל אברכים עם סדרי לימוד קבועים</li>
+              <li>שיעורים ופעילויות לקהל הרחב</li>
+              <li>עשיית חסד וסיוע במעגלי החיים</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 class="card__title">בראשות הרב שלמה דשן</h3>
+            <p class="card__text">
+              פעילות תורנית קהילתית בראשון לציון, עם דגש על עקביות, חום אנושי,
+              והקפדה על מסגרת מסודרת ומכבדת.
+            </p>
+            <div class="badgeRow">
+              <span class="badge">ראשון לציון</span>
+              <span class="badge">כולל אברכים</span>
+              <span class="badge">שיעורי תורה</span>
+              <span class="badge">חסד</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- פעילות -->
+    <section class="section section--alt" id="activity">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">הפעילות</h2>
+          <p class="section__subtitle">מה קורה אצלנו בפועל</p>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card card--icon">
+            <div class="icon">📖</div>
+            <h3 class="card__title">כולל אברכים</h3>
+            <p class="card__text">סדרי לימוד, חברותות, ועיון רציף – יום אחר יום.</p>
+          </article>
+
+          <article class="card card--icon">
+            <div class="icon">🕯️</div>
+            <h3 class="card__title">שיעורים לקהילה</h3>
+            <p class="card__text">שיעורים בנושאים שונים, חיזוק והעמקה, לכל הרמות.</p>
+          </article>
+
+          <article class="card card--icon">
+            <div class="icon">🤝</div>
+            <h3 class="card__title">חסד וסיוע</h3>
+            <p class="card__text">ליווי, עזרה נקודתית, וחיבור בין אנשים לטובת הזולת.</p>
+          </article>
+        </div>
+
+        <div class="callout">
+          <div class="callout__text">
+            <strong>רוצה להוסיף “אירועים קרובים”?</strong>
+            אפשר לבנות כאן אזור עם כרטיסים של תאריכים ושעות.
+          </div>
+          <a class="btn btn--ghost" href="#contact">בקשו להוסיף</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- גלריה -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">גלריה</h2>
+          <p class="section__subtitle">תמונות מהפעילות (בינתיים דמו)</p>
+        </div>
+
+        <div class="gallery">
+          <div class="ph" aria-label="תמונת דמו 1">תמונה 1</div>
+          <div class="ph" aria-label="תמונת דמו 2">תמונה 2</div>
+          <div class="ph" aria-label="תמונת דמו 3">תמונה 3</div>
+          <div class="ph" aria-label="תמונת דמו 4">תמונה 4</div>
+          <div class="ph" aria-label="תמונת דמו 5">תמונה 5</div>
+          <div class="ph" aria-label="תמונת דמו 6">תמונה 6</div>
+        </div>
+
+        <div class="note">
+          כשתשלח לי תמונות אמיתיות (או שמות קבצים), אחליף אותן בגלריה אמיתית.
+        </div>
+      </div>
+    </section>
+
+    <!-- תרומות -->
+    <section class="section section--alt" id="donate">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">תרומות</h2>
+          <p class="section__subtitle">לחיצה אחת – ונהיית שותף</p>
+        </div>
+
+        <div class="donateBox">
+          <div class="donateBox__left">
+            <div class="donateCircle">
+              <button class="donateCircle__btn" id="donateBtn" type="button">
+                לתרומה עכשיו
+              </button>
+              <div class="donateCircle__hint">ייפתח קישור תרומות</div>
+            </div>
+          </div>
+
+          <div class="donateBox__right">
+            <h3 class="donateBox__title">איך זה עובד?</h3>
+            <p class="donateBox__text">
+              כרגע הכנסתי קישור דוגמה. כשתשלח לי את הקישור האמיתי (נדרים פלוס / אשראי / ביט וכו׳),
+              אעדכן אותו במקום אחד — וכל האתר יתעדכן.
+            </p>
+            <div class="mini">
+              <div class="mini__row">
+                <span class="mini__label">קישור תרומות:</span>
+                <code class="mini__code" id="donationLinkPreview">לא הוגדר עדיין</code>
+              </div>
+              <div class="mini__row">
+                <span class="mini__label">הערה:</span>
+                <span class="mini__text">אפשר להוסיף גם מספר ביט/חשבון בנק בצורה מכובדת.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- יצירת קשר -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">יצירת קשר</h2>
+          <p class="section__subtitle">נשמח לשמוע ממך</p>
+        </div>
+
+        <div class="grid grid--2">
+          <div class="card">
+            <h3 class="card__title">שלח הודעה</h3>
+            <form class="form" id="contactForm">
+              <label class="field">
+                <span class="field__label">שם</span>
+                <input class="field__input" name="name" type="text" placeholder="לדוגמה: ישראל ישראלי" required />
+              </label>
+
+              <label class="field">
+                <span class="field__label">טלפון</span>
+                <input class="field__input" name="phone" type="tel" placeholder="05X-XXXXXXX" required />
+              </label>
+
+              <label class="field">
+                <span class="field__label">הודעה</span>
+                <textarea class="field__input" name="message" rows="4" placeholder="במה נוכל לעזור?" required></textarea>
+              </label>
+
+              <button class="btn btn--primary" type="submit">שליחה</button>
+              <p class="form__note" id="formNote" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3 class="card__title">פרטים</h3>
+            <p class="card__text">
+              כאן נשים כתובת, טלפון, שעות פעילות וקישורים.
+            </p>
+
+            <div class="info">
+              <div class="info__row"><span>📍</span><span><strong>כתובת:</strong> (להזנה)</span></div>
+              <div class="info__row"><span>☎️</span><span><strong>טלפון:</strong> (להזנה)</span></div>
+              <div class="info__row"><span>✉️</span><span><strong>אימייל:</strong> (להזנה)</span></div>
+            </div>
+
+            <div class="note">
+              אם תרצה, אוסיף פה גם מפה (Google Maps) וכפתור וואטסאפ.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- פוטר -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> מוסדות בית שלמה • הרב שלמה דשן</div>
+      <div class="footer__links">
+        <a href="#home">למעלה</a>
+        <span class="dot">•</span>
+        <a href="#donate">תרומות</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
