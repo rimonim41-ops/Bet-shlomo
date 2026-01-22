@@ -6,7 +6,7 @@
   <title>מוסדות בית שלמה | כולל ופעילויות – ראשון לציון</title>
   <meta name="description" content="מוסדות בית שלמה – תורה שמאירה את העיר ראשון לציון. כולל אברכים, שיעורי תורה, מדרשיית נוער וחסד. תרומות ויצירת קשר." />
 
-  <!-- Font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -28,6 +28,8 @@
       --radius:18px;
       --radius2:26px;
       --max:1120px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
 
     *{ box-sizing:border-box; }
@@ -41,11 +43,12 @@
         radial-gradient(900px 700px at 100% 10%, rgba(124,58,237,0.10), transparent 55%),
         radial-gradient(900px 700px at 70% 100%, rgba(22,163,74,0.08), transparent 55%),
         var(--bg);
+      overflow-x:hidden;
     }
     a{ color:inherit; text-decoration:none; }
     .container{ max-width:var(--max); margin:0 auto; padding:0 18px; }
 
-    /* Header */
+    /* ===== Header ===== */
     .header{
       position:sticky; top:0; z-index:50;
       background: rgba(255,255,255,0.82);
@@ -54,30 +57,33 @@
     }
     .header__inner{
       display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:12px 0;
+      gap:12px; padding:10px 0;
+      min-height:74px;
+      position:relative;
     }
-    .brand{ display:flex; align-items:center; gap:12px; min-width: 240px; }
-    .logoWrap{ position:relative; width:52px; height:52px; }
-    .logoFallback{
-      width:52px; height:52px; border-radius:18px;
-      display:grid; place-items:center;
-      background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(124,58,237,0.82));
-      color:#fff; font-weight:900;
-      box-shadow: var(--shadow);
-      letter-spacing:-0.5px;
-      user-select:none;
-      position:absolute; inset:0;
+
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 260px; }
+    .logoWrap{
+      position:relative;
+      width:86px; height:86px;
+      transform: translateY(12px); /* יוצא מחוץ למסגרת הכותרת */
+      flex: 0 0 auto;
     }
     .logoImg{
-      width:52px; height:52px; border-radius:18px;
+      width:86px; height:86px;
+      border-radius: 26px;
       object-fit:contain;
-      background:#fff;
+      background: rgba(255,255,255,0.92);
       border:1px solid rgba(15,23,42,0.10);
-      box-shadow: var(--shadow);
-      position:absolute; inset:0;
-      padding:6px;
+      box-shadow: 0 18px 55px rgba(15,23,42,0.18);
+      padding: 10px;
+      display:block;
+
+      /* ניסיון להסרת גוון (אפשר לשחק עם הערכים אם צריך) */
+      filter: saturate(0.6) contrast(1.06) brightness(1.05);
+      mix-blend-mode: multiply;
     }
-    .brand__title{ font-weight:900; line-height:1.05; }
+    .brand__title{ font-weight:1000; line-height:1.05; letter-spacing:-0.3px; }
     .brand__sub{ font-size:13px; color:var(--muted); margin-top:2px; }
 
     .nav{ display:flex; align-items:center; gap:10px; }
@@ -90,35 +96,40 @@
       cursor:pointer;
       font-weight:900;
       box-shadow: 0 8px 18px rgba(15,23,42,0.06);
+      transition: transform .15s var(--ease);
     }
+    .nav__toggle:active{ transform: scale(0.98); }
     .nav__menu{ display:flex; align-items:center; gap:6px; }
 
     .nav__link{
       padding:10px 12px;
       border-radius:14px;
       color:#334155;
-      font-weight:800;
+      font-weight:900;
       border:1px solid transparent;
-      transition: .15s ease;
+      transition: .18s var(--ease);
       white-space:nowrap;
     }
     .nav__link:hover{
       background:rgba(15,23,42,0.04);
       border-color:rgba(15,23,42,0.08);
       color:#0f172a;
+      transform: translateY(-1px);
     }
     .nav__cta{
       display:inline-flex; align-items:center; justify-content:center;
       padding:10px 12px;
       border-radius:14px;
-      font-weight:900;
+      font-weight:1000;
       color:#fff;
       background: linear-gradient(135deg, rgba(22,163,74,0.95), rgba(37,99,235,0.90));
       box-shadow: 0 16px 40px rgba(22,163,74,0.18);
       border:1px solid rgba(255,255,255,0.85);
       position:relative;
       margin-inline-start: 6px;
+      transition: .18s var(--ease);
     }
+    .nav__cta:hover{ transform: translateY(-1px); }
     .nav__cta::after{
       content:"";
       position:absolute; inset:-6px;
@@ -132,8 +143,8 @@
       100%{ transform: scale(1.07); opacity: 0; }
     }
 
-    /* Hero */
-    .hero{ padding: 54px 0 10px; }
+    /* ===== Hero ===== */
+    .hero{ padding: 56px 0 10px; }
     .heroBox{
       background: rgba(255,255,255,0.78);
       border: 1px solid rgba(15,23,42,0.10);
@@ -148,7 +159,7 @@
       content:"";
       position:absolute;
       inset:-90px -90px auto auto;
-      width: 340px; height: 340px;
+      width: 360px; height: 360px;
       border-radius:999px;
       background:
         radial-gradient(circle at 30% 30%, rgba(37,99,235,0.18), transparent 60%),
@@ -158,11 +169,11 @@
     }
     .heroTitle{
       position:relative;
-      font-size: clamp(28px, 3.3vw, 50px);
+      font-size: clamp(28px, 3.3vw, 52px);
       margin:0 0 10px;
       line-height:1.14;
-      letter-spacing:-0.6px;
-      font-weight: 1000;
+      letter-spacing:-0.8px;
+      font-weight: 1100;
     }
     .heroLead{
       position:relative;
@@ -170,51 +181,91 @@
       color:#334155;
       font-size:16px;
       max-width: 72ch;
-      line-height:1.75;
+      line-height:1.85;
     }
+
+    /* ===== Buttons ===== */
     .btnRow{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       padding: 12px 14px;
       border-radius: 16px;
-      font-weight:900;
+      font-weight:1000;
       border: 1px solid transparent;
       cursor:pointer;
-      transition:.15s ease;
+      transition:.18s var(--ease);
       gap:8px;
       user-select:none;
+      position:relative;
     }
-    .btn:hover{ transform: translateY(-1px); }
+    .btn:hover{ transform: translateY(-2px); }
     .btn:active{ transform: translateY(0); }
 
     .btn--primary{
       background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(124,58,237,0.85));
       color:#fff;
-      box-shadow: var(--shadow);
+      box-shadow: 0 18px 55px rgba(37,99,235,0.18);
       border-color: rgba(37,99,235,0.22);
     }
     .btn--ghost{
-      background:#fff;
-      border-color: var(--line);
+      background: rgba(255,255,255,0.92);
+      border-color: rgba(15,23,42,0.14);
       color:#0f172a;
-      box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+    }
+    .btn--wa{
+      background: linear-gradient(135deg, rgba(22,163,74,0.98), rgba(34,197,94,0.82));
+      color:#fff;
+      box-shadow: 0 18px 55px rgba(22,163,74,0.20);
+      border-color: rgba(255,255,255,0.65);
     }
 
-    /* Sections */
+    /* ===== Sections ===== */
     .section{ padding: 44px 0; }
     .section--alt{
       background: rgba(255,255,255,0.62);
       border-top: 1px solid rgba(15,23,42,0.06);
       border-bottom: 1px solid rgba(15,23,42,0.06);
     }
-    .section__head{ margin-bottom: 14px; }
-    .section__title{
-      margin:0 0 6px;
-      font-size:24px;
-      letter-spacing:-0.2px;
-      font-weight:1000;
+
+    /* כותרת ממורכזת + פס */
+    .sectionTitle{
+      margin:0;
+      text-align:center;
+      font-size: 26px;
+      font-weight: 1100;
+      letter-spacing: -0.4px;
+      position:relative;
+      display:inline-block;
+      padding-bottom: 12px;
     }
-    .section__sub{ margin:0; color: var(--muted); }
+    .titleWrap{ text-align:center; margin-bottom: 8px; }
+    .sectionTitle::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom: 2px;
+      transform: translateX(-50%);
+      width: 84px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(37,99,235,0.9), rgba(22,163,74,0.85));
+      transition: width .22s var(--ease), height .22s var(--ease), filter .22s var(--ease);
+      filter: saturate(1.05);
+    }
+    .sectionTitle:hover::after{
+      width: 128px;
+      height: 4px;
+      filter: saturate(1.25);
+    }
+    .sectionSub{
+      margin:0;
+      text-align:center;
+      color: var(--muted);
+      line-height:1.75;
+      max-width: 80ch;
+      margin-inline:auto;
+    }
 
     .grid{ display:grid; gap:12px; }
     .grid--2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -222,13 +273,18 @@
 
     .card{
       background:#fff;
-      border:1px solid var(--line);
+      border:1px solid rgba(15,23,42,0.10);
       border-radius: var(--radius);
       padding: 16px;
-      box-shadow: 0 10px 24px rgba(15,23,42,0.05);
+      box-shadow: 0 12px 28px rgba(15,23,42,0.06);
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease);
     }
-    .card__title{ margin:0 0 8px; font-weight:1000; }
-    .card__text{ margin:0; color:#334155; line-height:1.78; }
+    .card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 22px 55px rgba(15,23,42,0.10);
+    }
+    .card__title{ margin:0 0 8px; font-weight:1100; letter-spacing:-0.2px; }
+    .card__text{ margin:0; color:#334155; line-height:1.85; }
 
     .icon{
       width:46px; height:46px;
@@ -241,7 +297,7 @@
       user-select:none;
     }
 
-    /* Donations grid */
+    /* ===== Donations grid ===== */
     .donations{
       display:grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -250,7 +306,7 @@
     .donCard{
       border-radius: var(--radius2);
       border:1px solid rgba(15,23,42,0.10);
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.90);
       box-shadow: var(--shadow2);
       padding: 16px;
       position:relative;
@@ -258,8 +314,10 @@
       display:flex;
       flex-direction:column;
       gap:10px;
-      min-height: 190px;
+      min-height: 200px;
+      transition: transform .22s var(--ease);
     }
+    .donCard:hover{ transform: translateY(-4px); }
     .donCard::before{
       content:"";
       position:absolute;
@@ -279,14 +337,14 @@
     }
     .donTitle{
       margin:0;
-      font-weight:1000;
+      font-weight:1100;
       font-size: 17px;
       letter-spacing:-0.2px;
       line-height:1.25;
     }
     .donBadge{
       font-size:12px;
-      font-weight:1000;
+      font-weight:1100;
       padding:6px 10px;
       border-radius:999px;
       border:1px solid rgba(37,99,235,0.18);
@@ -305,6 +363,7 @@
       display:flex;
       gap:10px;
       flex-wrap:wrap;
+      justify-content:flex-start;
     }
     .btn--mini{
       padding: 10px 12px;
@@ -312,41 +371,137 @@
       font-size: 14px;
     }
 
-    /* Gallery */
+    /* ===== Gallery ===== */
     .gallery{
       display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(4, minmax(0,1fr));
       gap: 10px;
     }
     .gItem{
-      height: 170px;
+      height: 150px;
       border-radius: var(--radius);
-      border:1px solid var(--line);
-      background: linear-gradient(135deg, rgba(15,23,42,0.04), rgba(15,23,42,0.02));
-      box-shadow: 0 12px 26px rgba(15,23,42,0.05);
+      border:1px solid rgba(15,23,42,0.10);
+      background: linear-gradient(135deg, rgba(15,23,42,0.05), rgba(15,23,42,0.02));
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
       overflow:hidden;
       position:relative;
+      cursor:pointer;
+      transition: transform .22s var(--ease);
     }
+    .gItem:hover{ transform: translateY(-3px); }
     .gItem img{
       width:100%; height:100%;
       object-fit:cover;
       display:block;
+      transform: scale(1.01);
+      transition: transform .25s var(--ease), filter .25s var(--ease);
+      filter: saturate(1.02);
     }
-    .gItem .gLabel{
+    .gItem:hover img{ transform: scale(1.06); filter: saturate(1.08); }
+    .gBadge{
       position:absolute;
       inset:auto 10px 10px 10px;
       padding:8px 10px;
       border-radius:14px;
-      background: rgba(255,255,255,0.85);
-      border:1px solid rgba(15,23,42,0.10);
-      font-weight:900;
+      background: rgba(255,255,255,0.86);
+      border:1px solid rgba(15,23,42,0.12);
+      font-weight:1100;
       color:#0f172a;
       backdrop-filter: blur(8px);
-      box-shadow: 0 10px 24px rgba(15,23,42,0.12);
-      font-size: 13px;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.14);
+      font-size: 12px;
     }
 
-    /* Contact */
+    /* Lightbox */
+    .lb{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(2,6,23,0.72);
+      z-index:200;
+      padding: 18px;
+    }
+    .lb.is-open{ display:flex; }
+    .lbPanel{
+      width: min(980px, 100%);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 34px 120px rgba(0,0,0,0.38);
+      position:relative;
+      overflow:hidden;
+    }
+    .lbImgWrap{
+      width:100%;
+      aspect-ratio: 16 / 10;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.06);
+    }
+    .lbImg{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit:contain;
+      display:block;
+      filter: drop-shadow(0 18px 55px rgba(0,0,0,0.35));
+      transform: translateZ(0);
+    }
+    .lbTop{
+      position:absolute;
+      inset: 10px 10px auto 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      pointer-events:none;
+    }
+    .lbChip{
+      pointer-events:auto;
+      padding:8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.86);
+      border:1px solid rgba(15,23,42,0.14);
+      font-weight:1100;
+      font-size: 13px;
+      color:#0f172a;
+    }
+    .lbClose{
+      pointer-events:auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.18);
+      color:#fff;
+      font-weight:1100;
+      cursor:pointer;
+      transition: transform .18s var(--ease), background .18s var(--ease);
+    }
+    .lbClose:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.24); }
+
+    .lbNavBtn{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.16);
+      color:#fff;
+      cursor:pointer;
+      font-weight:1100;
+      transition: transform .18s var(--ease), background .18s var(--ease);
+      display:grid;
+      place-items:center;
+      user-select:none;
+    }
+    .lbNavBtn:hover{ transform: translateY(-50%) scale(1.03); background: rgba(255,255,255,0.22); }
+    .lbPrev{ right: 12px; }
+    .lbNext{ left: 12px; }
+
+    /* ===== Contact ===== */
     .contactGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -355,7 +510,7 @@
     }
     form{ display:grid; gap:10px; }
     label{
-      font-weight:900;
+      font-weight:1100;
       font-size: 13px;
       color:#334155;
     }
@@ -367,7 +522,7 @@
       font-size: 15px;
       outline:none;
       background: rgba(255,255,255,0.92);
-      transition: .15s ease;
+      transition: .18s var(--ease);
       font-family: inherit;
       color: var(--text);
     }
@@ -390,7 +545,7 @@
       border:1px solid rgba(15,23,42,0.12);
       background: rgba(255,255,255,0.86);
       color:#0f172a;
-      font-weight:800;
+      font-weight:1000;
     }
     .status--ok{
       border-color: rgba(22,163,74,0.28);
@@ -416,14 +571,29 @@
       padding-top: 16px;
     }
 
+    /* Smooth reveal animations */
+    .reveal{
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .55s var(--ease), transform .55s var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.is-in{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Responsive */
     @media (max-width: 1040px){
       .donations{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     }
     @media (max-width: 920px){
       .grid--3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
+      .logoWrap{ width:76px; height:76px; transform: translateY(10px); }
+      .logoImg{ width:76px; height:76px; border-radius:24px; padding:9px; }
     }
     @media (max-width: 720px){
       .brand{ min-width: unset; }
@@ -445,9 +615,10 @@
       .nav__menu.is-open{ display:flex; }
       .nav__link, .nav__cta{ width:100%; justify-content:center; }
       .donations{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
 
-    .anchor{ scroll-margin-top: 120px; }
+    .anchor{ scroll-margin-top: 130px; }
     .sep{ height:1px; background: rgba(15,23,42,0.08); margin: 12px 0; border-radius: 999px; }
   </style>
 </head>
@@ -459,9 +630,8 @@
       <div class="header__inner">
         <div class="brand">
           <div class="logoWrap" aria-hidden="true">
-            <!-- שים את קובץ הלוגו ליד index.html בשם: logo.png (או שנה את ה-src) -->
-            <img class="logoImg" id="brandLogo" src="logo.png" alt="מוסדות בית שלמה">
-            <div class="logoFallback" id="logoFallback">ב״ש</div>
+            <!-- הלוגו בתקיית השורש -->
+            <img class="logoImg" src="לוגו שקוף.jpeg" alt="מוסדות בית שלמה">
           </div>
           <div>
             <div class="brand__title">מוסדות בית שלמה</div>
@@ -478,7 +648,7 @@
             <a class="nav__link" href="#donate">תרומות</a>
             <a class="nav__link" href="#gallery">גלריה</a>
             <a class="nav__link" href="#contact">יצירת קשר</a>
-            <a class="nav__cta" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרומה כללית</a>
+            <a class="nav__cta" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">תרומה כללית</a>
           </div>
         </nav>
       </div>
@@ -488,14 +658,14 @@
   <!-- HERO -->
   <main id="home" class="hero anchor">
     <div class="container">
-      <div class="heroBox">
+      <div class="heroBox reveal">
         <h1 class="heroTitle">מוסדות בית שלמה – תורה שמאירה את העיר ראשון לציון</h1>
         <p class="heroLead">
           בית של תורה, חיזוק וחסד בלב הקהילה. אנו מחזיקים כולל אברכים, מקיימים שיעורי תורה מסודרים,
           מפעילים מסגרות חינוך והכוונה לנוער, ומקדמים יוזמות חסד ועזרה למשפחות – במיוחד בתקופות החגים.
         </p>
         <div class="btnRow">
-          <a class="btn btn--primary" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרומה מאובטחת</a>
+          <a class="btn btn--primary" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">תרומה מאובטחת</a>
           <a class="btn btn--ghost" href="#about">להכיר את הפעילות</a>
         </div>
       </div>
@@ -505,38 +675,36 @@
   <!-- ABOUT -->
   <section id="about" class="section anchor">
     <div class="container">
-      <div class="section__head">
-        <h2 class="section__title">עלינו</h2>
-        <p class="section__sub">החזקה קבועה של תורה, חינוך וחסד – לאורך כל השנה.</p>
+      <div class="titleWrap reveal">
+        <h2 class="sectionTitle">עלינו</h2>
+        <p class="sectionSub">החזקה קבועה של תורה, חינוך וחסד – לאורך כל השנה.</p>
       </div>
 
       <div class="grid grid--2">
-        <div class="card">
+        <div class="card reveal">
           <h3 class="card__title">בית מדרש חי ונושם</h3>
           <p class="card__text">
-            מוסדות בית שלמה פועלים כדי להעמיד בית מדרש יציב שמאיר את הסביבה: תפילות, לימוד מתמשך
-            ושיעורים קבועים – באווירה של רצינות, חום ואחדות.
+            מוסדות בית שלמה פועלים כדי להעמיד בית מדרש יציב שמאיר את הסביבה: תפילות, לימוד מתמשך ושיעורים קבועים
+            – באווירה של רצינות, חום ואחדות.
           </p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <h3 class="card__title">אחזקת אברכים</h3>
           <p class="card__text">
-            עיקר השליחות שלנו הוא החזקת אברכים העוסקים בתורה בעקביות. התמיכה מאפשרת להמשיך בלימוד
-            בהרחבת הדעת, לבנות בתים של תורה, ולהעמיד דוגמה רוחנית לקהילה כולה.
+            עיקר השליחות שלנו הוא החזקת אברכים העוסקים בתורה בעקביות. התמיכה מאפשרת להמשיך בלימוד בהרחבת הדעת,
+            לבנות בתים של תורה ולהעמיד דוגמה רוחנית לקהילה כולה.
           </p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <h3 class="card__title">שיעורי תורה ופעילות קהילתית</h3>
           <p class="card__text">
-            שיעורים מסודרים לאורך השבוע, מסגרות חיזוק, שבתות עיון, ותכנים המחברים את הציבור לתורה
-            באופן נגיש ומאיר – לכל גיל ולכל רמה.
+            שיעורים מסודרים לאורך השבוע, מסגרות חיזוק ותכנים המחברים את הציבור לתורה באופן נגיש ומאיר – לכל גיל ולכל רמה.
           </p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <h3 class="card__title">חינוך והכוונה לנוער</h3>
           <p class="card__text">
-            לצד הכולל, אנו מפתחים מסגרות של מדרשיית נוער: לימוד, שיחות חיזוק, ליווי אישי
-            ותכניות שמעניקות לנערים שייכות, יציבות ודרך.
+            לצד הכולל, אנו מפתחים מסגרות של מדרשיית נוער: לימוד, שיחות חיזוק, ליווי אישי ותכניות שמעניקות שייכות ויציבות.
           </p>
         </div>
       </div>
@@ -546,59 +714,41 @@
   <!-- ACTIVITY -->
   <section id="activity" class="section section--alt anchor">
     <div class="container">
-      <div class="section__head">
-        <h2 class="section__title">הפעילות שלנו</h2>
-        <p class="section__sub">תורה, קהילה וחסד – מהבוקר עד הלילה, ובמיוחד כשצריך.</p>
+      <div class="titleWrap reveal">
+        <h2 class="sectionTitle">הפעילות שלנו</h2>
+        <p class="sectionSub">תורה, קהילה וחסד – מהבוקר עד הלילה, ובמיוחד כשצריך.</p>
       </div>
 
       <div class="grid grid--3">
-        <div class="card">
+        <div class="card reveal">
           <div class="icon">📚</div>
           <h3 class="card__title">כולל אברכים</h3>
-          <p class="card__text">
-            סדרי לימוד קבועים ומסודרים לאורך השנה, התמדה, עיון ועמל תורה – מתוך אחריות להגדיל תורה
-            ולהאדירה בתוך העיר.
-          </p>
+          <p class="card__text">סדרי לימוד קבועים ומסודרים לאורך השנה, התמדה, עיון ועמל תורה – מתוך אחריות להגדיל תורה ולהאדירה.</p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="icon">🕯️</div>
           <h3 class="card__title">שיעורי תורה לציבור</h3>
-          <p class="card__text">
-            שיעורים ופעילויות חיזוק לקהל: הלכה, מחשבה, פרשת שבוע ותוכן יהודי מחזק – בשפה בהירה,
-            עם לב פתוח ואווירה משפחתית.
-          </p>
+          <p class="card__text">שיעורים ופעילויות חיזוק לקהל: הלכה, פרשת שבוע ותוכן מחזק – בשפה בהירה ועם לב פתוח.</p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="icon">🤝</div>
           <h3 class="card__title">חסד ועזרה למשפחות</h3>
-          <p class="card__text">
-            סיוע נקודתי לפי צורך, ליווי ותמיכה, ובחגים – חלוקת מזון ותמיכה מעשית כדי שלא יישאר בית
-            בלי שמחה ובלי כבוד.
-          </p>
+          <p class="card__text">סיוע נקודתי לפי צורך, ליווי ותמיכה, ובחגים – חלוקת מזון כדי שלא יישאר בית בלי שמחה ובלי כבוד.</p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="icon">👥</div>
           <h3 class="card__title">מדרשיית נוער</h3>
-          <p class="card__text">
-            תכניות המשלבות לימוד, שיח וחיזוק, ליווי אישי ופעילות ערכית – כדי לבנות דור צעיר
-            מחובר לתורה, למסורת ולזהות.
-          </p>
+          <p class="card__text">תכניות המשלבות לימוד, שיח וחיזוק, ליווי אישי ופעילות ערכית – כדי לבנות דור צעיר מחובר לתורה.</p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="icon">🏘️</div>
           <h3 class="card__title">קהילה וחיבור</h3>
-          <p class="card__text">
-            יצירת חיבור בין משפחות, שכנים ותושבים סביב נקודת אור אחת – בית המדרש.
-            שילוב של נתינה, אחריות הדדית וחום אנושי.
-          </p>
+          <p class="card__text">חיבור בין משפחות ותושבים סביב נקודת אור אחת – בית המדרש. נתינה, אחריות הדדית וחום אנושי.</p>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="icon">💡</div>
           <h3 class="card__title">יוזמות לאורך השנה</h3>
-          <p class="card__text">
-            פרויקטים מיוחדים בזמנים שונים: ימים של חיזוק, מסגרות לימוד, פעילויות עידוד והתעלות –
-            לפי צורכי התקופה והקהילה.
-          </p>
+          <p class="card__text">פרויקטים מיוחדים בזמנים שונים: מסגרות לימוד, פעילויות עידוד והתעלות – לפי צורכי התקופה והקהילה.</p>
         </div>
       </div>
     </div>
@@ -607,13 +757,13 @@
   <!-- DONATIONS -->
   <section id="donate" class="section anchor">
     <div class="container">
-      <div class="section__head">
-        <h2 class="section__title">תרומות ושותפויות</h2>
-        <p class="section__sub">בחרו יעד שותפות – כל לחיצה פותחת את עמוד התרומה הרלוונטי.</p>
+      <div class="titleWrap reveal">
+        <h2 class="sectionTitle">תרומות ושותפויות</h2>
+        <p class="sectionSub">בחרו יעד שותפות – כל לחיצה פותחת את עמוד התרומה הרלוונטי.</p>
       </div>
 
       <div class="donations">
-        <div class="donCard">
+        <div class="donCard reveal">
           <div class="donTop">
             <h3 class="donTitle">אחזקת אברך</h3>
             <div class="donBadge">₪2,500 / חודש</div>
@@ -621,11 +771,11 @@
           <p class="donDesc">שותפות חודשית להחזקת אברך כולל. (12 חודשים)</p>
           <div class="donActions">
             <a class="btn btn--primary btn--mini" href="https://nedar.im/eRRG" target="_blank" rel="noopener">לתרומה</a>
-            <a class="btn btn--ghost btn--mini" href="#contact">לשיחה / תיאום</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">לתיאום</a>
           </div>
         </div>
 
-        <div class="donCard">
+        <div class="donCard reveal">
           <div class="donTop">
             <h3 class="donTitle">תכנית קידום נוער בסיכון</h3>
             <div class="donBadge">₪400</div>
@@ -633,24 +783,24 @@
           <p class="donDesc">תמיכה בתכניות ליווי, חיזוק והכוונה לנוער.</p>
           <div class="donActions">
             <a class="btn btn--primary btn--mini" href="https://nedar.im/gCBU" target="_blank" rel="noopener">לתרומה</a>
-            <a class="btn btn--ghost btn--mini" href="#contact">פרטים נוספים</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">פרטים</a>
           </div>
         </div>
 
-        <div class="donCard">
+        <div class="donCard reveal">
           <div class="donTop">
             <h3 class="donTitle">לימוד קבוע לעילוי נשמה</h3>
             <div class="donBadge">₪500 / חודש</div>
           </div>
           <p class="donDesc">לימוד קבוע לעילוי נשמה – שותפות חודשית (12 חודשים).</p>
           <div class="donActions">
-            <!-- לא קיבלת ממך קישור ספציפי ללימוד קבוע, אז שמתי תרומה כללית כגיבוי -->
-            <a class="btn btn--primary btn--mini" href="https://nedar.im/QoNK" target="_blank" rel="noopener">לתרומה</a>
-            <a class="btn btn--ghost btn--mini" href="#contact">לרישום שם</a>
+            <!-- אם יש לך קישור ספציפי, החלף כאן -->
+            <a class="btn btn--primary btn--mini" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">להקדשה</a>
           </div>
         </div>
 
-        <div class="donCard">
+        <div class="donCard reveal">
           <div class="donTop">
             <h3 class="donTitle">הקדשת יום לימוד בכולל אברכים</h3>
             <div class="donBadge">₪360</div>
@@ -658,15 +808,14 @@
           <p class="donDesc">הקדשת יום לימוד – לזכות, להצלחה ולעילוי נשמה.</p>
           <div class="donActions">
             <a class="btn btn--primary btn--mini" href="https://nedar.im/kJkp" target="_blank" rel="noopener">לתרומה</a>
-            <a class="btn btn--ghost btn--mini" href="#contact">להוספת הקדשה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">להוספת שם</a>
           </div>
         </div>
       </div>
 
       <div class="sep"></div>
-
-      <div class="btnRow">
-        <a class="btn btn--ghost" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרומה כללית</a>
+      <div class="btnRow reveal">
+        <a class="btn btn--ghost" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">תרומה כללית</a>
       </div>
     </div>
   </section>
@@ -674,32 +823,25 @@
   <!-- GALLERY -->
   <section id="gallery" class="section anchor">
     <div class="container">
-      <div class="section__head">
-        <h2 class="section__title">גלריה</h2>
-        <p class="section__sub">כאן נכניס בהמשך תמונות אמיתיות מהפעילות.</p>
+      <div class="titleWrap reveal">
+        <h2 class="sectionTitle">גלריה</h2>
+        <p class="sectionSub">התמונות נטענות לפי סדר: 1.jpg, 2.jpg, 3.jpg ... לחצו להגדלה.</p>
       </div>
 
-      <div class="gallery">
-        <div class="gItem"><div class="gLabel">תמונה 1</div></div>
-        <div class="gItem"><div class="gLabel">תמונה 2</div></div>
-        <div class="gItem"><div class="gLabel">תמונה 3</div></div>
-        <div class="gItem"><div class="gLabel">תמונה 4</div></div>
-        <div class="gItem"><div class="gLabel">תמונה 5</div></div>
-        <div class="gItem"><div class="gLabel">תמונה 6</div></div>
-      </div>
+      <div class="gallery" id="galleryGrid" aria-label="גלריה"></div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" class="section section--alt anchor">
     <div class="container">
-      <div class="section__head">
-        <h2 class="section__title">יצירת קשר</h2>
-        <p class="section__sub">השאירו שם, מייל והודעה — נשלח דרך Google Apps Script.</p>
+      <div class="titleWrap reveal">
+        <h2 class="sectionTitle">יצירת קשר</h2>
+        <p class="sectionSub">השאירו שם, מייל והודעה — או דברו איתנו בוואטסאפ.</p>
       </div>
 
       <div class="contactGrid">
-        <div class="card">
+        <div class="card reveal">
           <h3 class="card__title">שלחו הודעה</h3>
 
           <form id="contactForm">
@@ -718,16 +860,24 @@
               <textarea class="field" id="message" name="message" placeholder="כתבו כאן את ההודעה..." required></textarea>
             </div>
 
-            <button class="btn btn--primary" type="submit" id="sendBtn">שליחה</button>
+            <div class="btnRow" style="justify-content:flex-start">
+              <button class="btn btn--primary" type="submit" id="sendBtn">שליחה</button>
+
+              <!-- כפתור וואטסאפ ליד יצירת קשר -->
+              <a class="btn btn--wa" id="waBtn" href="https://wa.me/972548828128" target="_blank" rel="noopener">
+                דברו איתנו בוואטסאפ
+              </a>
+            </div>
+
             <div class="status" id="statusBox" role="status" aria-live="polite"></div>
 
             <p class="notice">
-              שים לב: הסקריפט שלך קורא <b>e.parameter</b>, לכן אנחנו שולחים את הנתונים כ-Form URL Encoded (לא JSON).
+              הסקריפט קורא <b>e.parameter</b>, לכן השליחה מתבצעת בפורמט <b>application/x-www-form-urlencoded</b>.
             </p>
           </form>
         </div>
 
-        <div class="card">
+        <div class="card reveal">
           <h3 class="card__title">פרטים</h3>
           <p class="card__text">
             נשמח לשמוע מכם לגבי שותפות, תמיכה, קביעת שיעור, או כל עניין בקהילה.
@@ -735,7 +885,7 @@
           <div class="sep"></div>
           <p class="notice" style="margin:0">
             לתרומה מאובטחת:
-            <a href="https://nedar.im/QoNK" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:900;">
+            <a href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:1100;">
               לחצו כאן
             </a>
           </p>
@@ -758,24 +908,31 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div class="lb" id="lightbox" aria-hidden="true">
+    <div class="lbPanel" role="dialog" aria-modal="true" aria-label="תצוגת תמונה">
+      <div class="lbTop">
+        <div class="lbChip" id="lbChip">תמונה</div>
+        <button class="lbClose" id="lbClose" type="button" aria-label="סגירה">✕</button>
+      </div>
+
+      <button class="lbNavBtn lbPrev" id="lbPrev" type="button" aria-label="הקודם">›</button>
+      <button class="lbNavBtn lbNext" id="lbNext" type="button" aria-label="הבא">‹</button>
+
+      <div class="lbImgWrap">
+        <img class="lbImg" id="lbImg" alt="תמונה בגלריה" />
+      </div>
+    </div>
+  </div>
+
   <script>
-    // ====== Settings ======
+    // ===== Settings =====
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyw4rg4R8QMmNuQfud4o1AzTJG343CY4KekKRUxu-JV0HMrCn__oPTYsu9gd3YAqW2ozg/exec";
 
-    // ====== Logo fallback if image missing ======
-    const brandLogo = document.getElementById("brandLogo");
-    const logoFallback = document.getElementById("logoFallback");
-    if (brandLogo) {
-      brandLogo.addEventListener("error", () => {
-        brandLogo.style.display = "none";
-        if (logoFallback) logoFallback.style.display = "grid";
-      });
-      brandLogo.addEventListener("load", () => {
-        if (logoFallback) logoFallback.style.display = "none";
-      });
-    }
+    // כמה תמונות יש לך בגלריה (שים מספר גדול, ואם חסר קובץ זה פשוט לא יוצג)
+    const GALLERY_MAX = 24; // 1.jpg ... 24.jpg
 
-    // ====== Mobile menu ======
+    // ===== Mobile menu =====
     const navToggle = document.getElementById("navToggle");
     const navMenu = document.getElementById("navMenu");
     if (navToggle && navMenu) {
@@ -783,7 +940,6 @@
         const open = navMenu.classList.toggle("is-open");
         navToggle.setAttribute("aria-expanded", String(open));
       });
-
       navMenu.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => {
           navMenu.classList.remove("is-open");
@@ -792,10 +948,19 @@
       });
     }
 
-    // ====== Year ======
+    // ===== Year =====
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ====== Contact form submit -> Google Apps Script ======
+    // ===== Reveal on scroll =====
+    const revealEls = Array.from(document.querySelectorAll(".reveal"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("is-in");
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // ===== Contact form -> GAS (urlencoded) =====
     const form = document.getElementById("contactForm");
     const statusBox = document.getElementById("statusBox");
     const sendBtn = document.getElementById("sendBtn");
@@ -823,16 +988,10 @@
       sendBtn.textContent = "שולח...";
 
       try {
-        // שולחים כ-application/x-www-form-urlencoded כדי שהסקריפט יקבל e.parameter
-        const body = new URLSearchParams({
-          name,
-          email,
-          message
-        });
+        const body = new URLSearchParams({ name, email, message });
 
         const res = await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
-          // אל תשנה ל-JSON — זה בדיוק מה שגרם לשגיאה אצלך
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body
         });
@@ -846,7 +1005,6 @@
           setStatus("ההודעה נשלחה בהצלחה! נחזור אליכם בעזרת ה׳.", true);
           form.reset();
         }
-
       } catch (err) {
         console.error(err);
         setStatus("שגיאה בשליחה (תקשורת). נסו שוב או מאוחר יותר.", false);
@@ -855,6 +1013,121 @@
         sendBtn.textContent = "שליחה";
       }
     });
+
+    // ===== Gallery build (1.jpg..N) with graceful skip =====
+    const grid = document.getElementById("galleryGrid");
+    const gallery = [];
+    for (let i = 1; i <= GALLERY_MAX; i++) gallery.push(`${i}.jpg`);
+
+    // create cards; if image missing -> remove card
+    gallery.forEach((src, idx) => {
+      const item = document.createElement("div");
+      item.className = "gItem reveal";
+      item.setAttribute("role","button");
+      item.setAttribute("tabindex","0");
+      item.dataset.index = String(idx);
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `תמונה ${idx + 1}`;
+
+      img.addEventListener("error", () => {
+        // אם קובץ לא קיים - לא מציגים את הריבוע
+        item.remove();
+      });
+
+      const badge = document.createElement("div");
+      badge.className = "gBadge";
+      badge.textContent = `תמונה ${idx + 1}`;
+
+      item.appendChild(img);
+      item.appendChild(badge);
+      grid.appendChild(item);
+
+      // observe reveal for dynamically added items
+      io.observe(item);
+
+      item.addEventListener("click", () => openLightbox(idx));
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openLightbox(idx);
+        }
+      });
+    });
+
+    // ===== Lightbox logic (arrows + keyboard + swipe) =====
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbChip = document.getElementById("lbChip");
+    const lbClose = document.getElementById("lbClose");
+    const lbPrev = document.getElementById("lbPrev");
+    const lbNext = document.getElementById("lbNext");
+
+    let currentIndex = 0;
+
+    function openLightbox(index){
+      // find visible items only (after removing missing)
+      const visible = Array.from(grid.querySelectorAll(".gItem"));
+      if (!visible.length) return;
+
+      // map index to visible index
+      const maxIdx = visible.length - 1;
+      currentIndex = Math.max(0, Math.min(index, maxIdx));
+
+      const src = visible[currentIndex].querySelector("img").getAttribute("src");
+      lbImg.src = src;
+      lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
+
+      lb.classList.add("is-open");
+      lb.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      lb.classList.remove("is-open");
+      lb.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+      lbImg.src = "";
+    }
+
+    function step(delta){
+      const visible = Array.from(grid.querySelectorAll(".gItem"));
+      if (!visible.length) return;
+
+      currentIndex = (currentIndex + delta + visible.length) % visible.length;
+      const src = visible[currentIndex].querySelector("img").getAttribute("src");
+      lbImg.src = src;
+      lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
+    }
+
+    lbClose.addEventListener("click", closeLightbox);
+    lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
+    lbPrev.addEventListener("click", () => step(-1));
+    lbNext.addEventListener("click", () => step(+1));
+
+    document.addEventListener("keydown", (e) => {
+      if (!lb.classList.contains("is-open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") step(+1);
+      if (e.key === "ArrowRight") step(-1);
+    });
+
+    // swipe
+    let xStart = null;
+    lb.addEventListener("touchstart", (e) => {
+      if (!lb.classList.contains("is-open")) return;
+      xStart = e.touches[0].clientX;
+    }, {passive:true});
+
+    lb.addEventListener("touchend", (e) => {
+      if (xStart === null) return;
+      const xEnd = e.changedTouches[0].clientX;
+      const dx = xEnd - xStart;
+      xStart = null;
+      if (Math.abs(dx) < 40) return;
+      if (dx > 0) step(-1); else step(+1);
+    }, {passive:true});
   </script>
 </body>
 </html>
