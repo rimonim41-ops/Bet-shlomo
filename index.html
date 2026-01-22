@@ -57,14 +57,25 @@
       gap:12px; padding:12px 0;
     }
     .brand{ display:flex; align-items:center; gap:12px; min-width: 240px; }
-    .logo{
-      width:44px; height:44px; border-radius:16px;
+    .logoWrap{ position:relative; width:52px; height:52px; }
+    .logoFallback{
+      width:52px; height:52px; border-radius:18px;
       display:grid; place-items:center;
       background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(124,58,237,0.82));
       color:#fff; font-weight:900;
       box-shadow: var(--shadow);
       letter-spacing:-0.5px;
       user-select:none;
+      position:absolute; inset:0;
+    }
+    .logoImg{
+      width:52px; height:52px; border-radius:18px;
+      object-fit:contain;
+      background:#fff;
+      border:1px solid rgba(15,23,42,0.10);
+      box-shadow: var(--shadow);
+      position:absolute; inset:0;
+      padding:6px;
     }
     .brand__title{ font-weight:900; line-height:1.05; }
     .brand__sub{ font-size:13px; color:var(--muted); margin-top:2px; }
@@ -230,6 +241,77 @@
       user-select:none;
     }
 
+    /* Donations grid */
+    .donations{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .donCard{
+      border-radius: var(--radius2);
+      border:1px solid rgba(15,23,42,0.10);
+      background: rgba(255,255,255,0.88);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 190px;
+    }
+    .donCard::before{
+      content:"";
+      position:absolute;
+      inset:auto -120px -120px auto;
+      width: 260px; height: 260px;
+      border-radius:999px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(22,163,74,0.14), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(37,99,235,0.12), transparent 60%);
+      transform: rotate(-10deg);
+      filter: blur(1px);
+    }
+    .donCard > *{ position:relative; }
+
+    .donTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .donTitle{
+      margin:0;
+      font-weight:1000;
+      font-size: 17px;
+      letter-spacing:-0.2px;
+      line-height:1.25;
+    }
+    .donBadge{
+      font-size:12px;
+      font-weight:1000;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(37,99,235,0.18);
+      background: rgba(37,99,235,0.08);
+      color:#1f3a8a;
+      white-space:nowrap;
+    }
+    .donDesc{
+      margin:0;
+      color:#334155;
+      line-height:1.7;
+      font-size: 14px;
+    }
+    .donActions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn--mini{
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 14px;
+    }
+
     /* Gallery */
     .gallery{
       display:grid;
@@ -264,78 +346,6 @@
       font-size: 13px;
     }
 
-    /* Donate section */
-    .donateWrap{
-      display:grid;
-      grid-template-columns: 1.02fr 0.98fr;
-      gap: 12px;
-      align-items: stretch;
-    }
-    .donateBox{
-      padding: 18px;
-      border-radius: var(--radius2);
-      border:1px solid rgba(15,23,42,0.10);
-      background: rgba(255,255,255,0.82);
-      box-shadow: var(--shadow2);
-      position:relative;
-      overflow:hidden;
-    }
-    .donateBox::before{
-      content:"";
-      position:absolute;
-      inset:auto -120px -120px auto;
-      width: 320px; height: 320px;
-      border-radius:999px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(22,163,74,0.16), transparent 60%),
-        radial-gradient(circle at 70% 70%, rgba(37,99,235,0.14), transparent 60%);
-      transform: rotate(-10deg);
-      filter: blur(1px);
-    }
-    .donateBox > *{ position:relative; }
-    .donateTitle{ margin:0 0 8px; font-weight:1000; font-size:20px; }
-    .donateText{ margin:0 0 14px; color:#334155; line-height:1.8; }
-
-    .donateCircle{
-      height: 100%;
-      min-height: 230px;
-      display:grid;
-      place-items:center;
-      border-radius: var(--radius2);
-      border:1px dashed rgba(15,23,42,0.20);
-      background: rgba(255,255,255,0.72);
-      position:relative;
-      overflow:hidden;
-    }
-    .donateCircle::after{
-      content:"";
-      position:absolute; inset: 14px;
-      border-radius: 999px;
-      border: 2px solid rgba(22,163,74,0.16);
-      animation: glow 2.2s ease-out infinite;
-    }
-    @keyframes glow{
-      0%{ transform: scale(0.985); opacity: 0.75; }
-      70%{ transform: scale(1.04); opacity: 0; }
-      100%{ transform: scale(1.045); opacity: 0; }
-    }
-    .donateCircleInner{
-      text-align:center;
-      padding: 16px;
-      max-width: 360px;
-    }
-    .donateBig{
-      font-size: 22px;
-      font-weight: 1000;
-      margin: 0 0 8px;
-      letter-spacing:-0.3px;
-    }
-    .donateSmall{
-      margin:0 0 14px;
-      color: var(--muted);
-      line-height:1.7;
-    }
-
     /* Contact */
     .contactGrid{
       display:grid;
@@ -343,10 +353,7 @@
       gap: 12px;
       align-items:start;
     }
-    form{
-      display:grid;
-      gap:10px;
-    }
+    form{ display:grid; gap:10px; }
     label{
       font-weight:900;
       font-size: 13px;
@@ -410,9 +417,11 @@
     }
 
     /* Responsive */
+    @media (max-width: 1040px){
+      .donations{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 920px){
       .grid--3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .donateWrap{ grid-template-columns: 1fr; }
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
     }
@@ -435,21 +444,25 @@
       }
       .nav__menu.is-open{ display:flex; }
       .nav__link, .nav__cta{ width:100%; justify-content:center; }
+      .donations{ grid-template-columns: 1fr; }
     }
 
-    /* Tiny helpers */
     .anchor{ scroll-margin-top: 120px; }
     .sep{ height:1px; background: rgba(15,23,42,0.08); margin: 12px 0; border-radius: 999px; }
   </style>
 </head>
 
 <body>
-  <!-- HEADER (שורה אחת של קטגוריות + כפתור תרומה) -->
+  <!-- HEADER -->
   <header class="header">
     <div class="container">
       <div class="header__inner">
         <div class="brand">
-          <div class="logo">ב״ש</div>
+          <div class="logoWrap" aria-hidden="true">
+            <!-- שים את קובץ הלוגו ליד index.html בשם: logo.png (או שנה את ה-src) -->
+            <img class="logoImg" id="brandLogo" src="logo.png" alt="מוסדות בית שלמה">
+            <div class="logoFallback" id="logoFallback">ב״ש</div>
+          </div>
           <div>
             <div class="brand__title">מוסדות בית שלמה</div>
             <div class="brand__sub">כולל | שיעורי תורה | חסד – ראשון לציון</div>
@@ -462,9 +475,10 @@
             <a class="nav__link" href="#home">דף הבית</a>
             <a class="nav__link" href="#about">עלינו</a>
             <a class="nav__link" href="#activity">הפעילות</a>
+            <a class="nav__link" href="#donate">תרומות</a>
             <a class="nav__link" href="#gallery">גלריה</a>
             <a class="nav__link" href="#contact">יצירת קשר</a>
-            <a class="nav__cta" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">לתמיכה ותרומה</a>
+            <a class="nav__cta" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">תרומה כללית</a>
           </div>
         </nav>
       </div>
@@ -488,7 +502,7 @@
     </div>
   </main>
 
-  <!-- ABOUT (מייד אחרי דף הבית) -->
+  <!-- ABOUT -->
   <section id="about" class="section anchor">
     <div class="container">
       <div class="section__head">
@@ -587,34 +601,72 @@
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- DONATIONS -->
+  <section id="donate" class="section anchor">
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title">תרומות ושותפויות</h2>
+        <p class="section__sub">בחרו יעד שותפות – כל לחיצה פותחת את עמוד התרומה הרלוונטי.</p>
+      </div>
+
+      <div class="donations">
+        <div class="donCard">
+          <div class="donTop">
+            <h3 class="donTitle">אחזקת אברך</h3>
+            <div class="donBadge">₪2,500 / חודש</div>
+          </div>
+          <p class="donDesc">שותפות חודשית להחזקת אברך כולל. (12 חודשים)</p>
+          <div class="donActions">
+            <a class="btn btn--primary btn--mini" href="https://nedar.im/eRRG" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">לשיחה / תיאום</a>
+          </div>
+        </div>
+
+        <div class="donCard">
+          <div class="donTop">
+            <h3 class="donTitle">תכנית קידום נוער בסיכון</h3>
+            <div class="donBadge">₪400</div>
+          </div>
+          <p class="donDesc">תמיכה בתכניות ליווי, חיזוק והכוונה לנוער.</p>
+          <div class="donActions">
+            <a class="btn btn--primary btn--mini" href="https://nedar.im/gCBU" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">פרטים נוספים</a>
+          </div>
+        </div>
+
+        <div class="donCard">
+          <div class="donTop">
+            <h3 class="donTitle">לימוד קבוע לעילוי נשמה</h3>
+            <div class="donBadge">₪500 / חודש</div>
+          </div>
+          <p class="donDesc">לימוד קבוע לעילוי נשמה – שותפות חודשית (12 חודשים).</p>
+          <div class="donActions">
+            <!-- לא קיבלת ממך קישור ספציפי ללימוד קבוע, אז שמתי תרומה כללית כגיבוי -->
+            <a class="btn btn--primary btn--mini" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">לרישום שם</a>
+          </div>
+        </div>
+
+        <div class="donCard">
+          <div class="donTop">
+            <h3 class="donTitle">הקדשת יום לימוד בכולל אברכים</h3>
+            <div class="donBadge">₪360</div>
+          </div>
+          <p class="donDesc">הקדשת יום לימוד – לזכות, להצלחה ולעילוי נשמה.</p>
+          <div class="donActions">
+            <a class="btn btn--primary btn--mini" href="https://nedar.im/kJkp" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">להוספת הקדשה</a>
+          </div>
+        </div>
+      </div>
 
       <div class="sep"></div>
 
-      <div class="donateWrap">
-        <div class="donateBox">
-          <h3 class="donateTitle">לתמיכה ותרומה</h3>
-          <p class="donateText">
-            כל שותפות מחזיקה תורה בפועל: לימוד רציף, שיעורים לציבור, מסגרות לנוער ופעילות חסד.
-            לחיצה אחת – ותגיע לעמוד תרומה מאובטח.
-          </p>
-          <div class="btnRow" style="justify-content:flex-start">
-            <a class="btn btn--primary" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">תרומה מאובטחת</a>
-            <a class="btn btn--ghost" href="#contact">דברו איתנו</a>
-          </div>
-          <p class="notice" style="margin-top:10px">
-            רוצים לקבוע הקדשה / יעד תרומה מסוים? כתבו לנו, ונחזור אליכם.
-          </p>
-        </div>
-
-        <div class="donateCircle" aria-hidden="true">
-          <div class="donateCircleInner">
-            <p class="donateBig">שותפות קבועה = אור קבוע</p>
-            <p class="donateSmall">
-              תמיכה שמחזיקה את התורה במרכז העיר – יום יום, שבוע שבוע, חודש חודש.
-            </p>
-            <a class="btn btn--primary" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">לתרומה כללית</a>
-          </div>
-        </div>
+      <div class="btnRow">
+        <a class="btn btn--ghost" href="https://www.matara.pro/nedarimplus/online/?mosad=7003808" target="_blank" rel="noopener">תרומה כללית</a>
       </div>
     </div>
   </section>
@@ -628,8 +680,6 @@
       </div>
 
       <div class="gallery">
-        <!-- החליפו בהמשך לתמונות אמיתיות, לדוגמה:
-             <img src="images/1.jpg" alt="..." /> -->
         <div class="gItem"><div class="gLabel">תמונה 1</div></div>
         <div class="gItem"><div class="gLabel">תמונה 2</div></div>
         <div class="gItem"><div class="gLabel">תמונה 3</div></div>
@@ -645,7 +695,7 @@
     <div class="container">
       <div class="section__head">
         <h2 class="section__title">יצירת קשר</h2>
-        <p class="section__sub">השאירו פרטים ונחזור אליכם. ההודעה נשלחת דרך Google Apps Script.</p>
+        <p class="section__sub">השאירו שם, מייל והודעה — נשלח דרך Google Apps Script.</p>
       </div>
 
       <div class="contactGrid">
@@ -653,6 +703,11 @@
           <h3 class="card__title">שלחו הודעה</h3>
 
           <form id="contactForm">
+            <div>
+              <label for="name">שם</label>
+              <input class="field" id="name" name="name" type="text" placeholder="שם מלא" required />
+            </div>
+
             <div>
               <label for="email">מייל</label>
               <input class="field" id="email" name="email" type="email" placeholder="name@example.com" required />
@@ -667,7 +722,7 @@
             <div class="status" id="statusBox" role="status" aria-live="polite"></div>
 
             <p class="notice">
-              אם השליחה לא מצליחה בגלל הגדרות אבטחה בדפדפן, נסו שוב או שלחו דרך המייל שלכם.
+              שים לב: הסקריפט שלך קורא <b>e.parameter</b>, לכן אנחנו שולחים את הנתונים כ-Form URL Encoded (לא JSON).
             </p>
           </form>
         </div>
@@ -696,7 +751,7 @@
         <div>© <span id="year"></span> מוסדות בית שלמה</div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a class="nav__link" href="#home">דף הבית</a>
-          <a class="nav__link" href="#about">עלינו</a>
+          <a class="nav__link" href="#donate">תרומות</a>
           <a class="nav__link" href="#contact">יצירת קשר</a>
         </div>
       </div>
@@ -705,8 +760,20 @@
 
   <script>
     // ====== Settings ======
-    const DONATE_URL = "https://www.matara.pro/nedarimplus/online/?mosad=7003808";
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyw4rg4R8QMmNuQfud4o1AzTJG343CY4KekKRUxu-JV0HMrCn__oPTYsu9gd3YAqW2ozg/exec";
+
+    // ====== Logo fallback if image missing ======
+    const brandLogo = document.getElementById("brandLogo");
+    const logoFallback = document.getElementById("logoFallback");
+    if (brandLogo) {
+      brandLogo.addEventListener("error", () => {
+        brandLogo.style.display = "none";
+        if (logoFallback) logoFallback.style.display = "grid";
+      });
+      brandLogo.addEventListener("load", () => {
+        if (logoFallback) logoFallback.style.display = "none";
+      });
+    }
 
     // ====== Mobile menu ======
     const navToggle = document.getElementById("navToggle");
@@ -717,7 +784,6 @@
         navToggle.setAttribute("aria-expanded", String(open));
       });
 
-      // Close on link click (mobile)
       navMenu.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => {
           navMenu.classList.remove("is-open");
@@ -743,11 +809,13 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      if (!email || !message) {
-        setStatus("נא למלא מייל והודעה.", false);
+      if (!name || !email || !message) {
+        setStatus("נא למלא שם, מייל והודעה.", false);
         return;
       }
 
@@ -755,20 +823,20 @@
       sendBtn.textContent = "שולח...";
 
       try {
-        // POST JSON (רוב הסקריפטים קולטים כך; אם אצלך זה GET/URL-encoded — תגיד לי ואעדכן)
-        const res = await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email,
-            message,
-            page: location.href,
-            timestamp: new Date().toISOString()
-          })
+        // שולחים כ-application/x-www-form-urlencoded כדי שהסקריפט יקבל e.parameter
+        const body = new URLSearchParams({
+          name,
+          email,
+          message
         });
 
-        // נסה לקרוא תשובה כטקסט (כדי שלא ייפול על JSON)
+        const res = await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          // אל תשנה ל-JSON — זה בדיוק מה שגרם לשגיאה אצלך
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body
+        });
+
         const txt = await res.text();
 
         if (!res.ok) {
@@ -786,14 +854,6 @@
         sendBtn.disabled = false;
         sendBtn.textContent = "שליחה";
       }
-    });
-
-    // ====== Make every donate button point to the same URL ======
-    // (אם בעתיד תוסיף עוד כפתורים עם data-donate — זה יעדכן אוטומטית)
-    document.querySelectorAll("[data-donate]").forEach(el => {
-      el.setAttribute("href", DONATE_URL);
-      el.setAttribute("target", "_blank");
-      el.setAttribute("rel", "noopener");
     });
   </script>
 </body>
