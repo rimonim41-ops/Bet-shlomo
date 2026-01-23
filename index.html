@@ -4,1109 +4,622 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>מוסדות בית שלמה | כולל ופעילויות – ראשון לציון</title>
-  <meta name="description" content="מוסדות בית שלמה – תורה שמאירה את העיר ראשון לציון. כולל אברכים, שיעורי תורה, מדרשיית נוער ופעילויות חסד.">
+  <meta name="description" content="מוסדות בית שלמה – תורה שמאירה את העיר ראשון לציון. כולל אברכים, שיעורי תורה, מדרשיית נוער וחסד. תרומות ויצירת קשר." />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #f8f6f2;
-      --card: #ffffff;
-      --text: #2a2a2a;
-      --text-light: #666666;
-      --accent: #3498db;
-      --accent-light: #5dade2;
-      --accent-dark: #2874a6;
-      --accent-bright: #85c1e9;
-      --line: rgba(42, 42, 42, 0.08);
-      --shadow-sm: 0 2px 8px rgba(42, 42, 42, 0.05);
-      --shadow-md: 0 8px 20px rgba(42, 42, 42, 0.08);
-      --shadow-lg: 0 16px 40px rgba(42, 42, 42, 0.12);
-      --radius: 10px;
-      --radius-lg: 16px;
-      --max: 1200px;
-      --ease: cubic-bezier(.4,.0,.2,1);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Heebo', system-ui, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #f8f6f2 0%, #f3ede4 50%, #ede6dc 100%);
-      background-attachment: fixed;
-      overflow-x: hidden;
-      letter-spacing: 0.3px;
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url('רקע.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      opacity: 0.5;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ===== HEADER ===== */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(248, 246, 242, 0.96);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--line);
-      box-shadow: 0 2px 12px rgba(42, 42, 42, 0.06);
-    }
-
-    .header__inner {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding: 16px 0 0 0;
-      min-height: auto;
-      position: relative;
-    }
-
-    .brand {
-      display: flex;
-      align-items: flex-end;
-      gap: 24px;
-    }
-
-    .logoWrap {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      flex-shrink: 0;
-      margin-bottom: -50px;
-    }
-
-    .logoImg {
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
-      object-fit: contain;
-      background: rgba(255, 255, 255, 0.98);
-      border: 3px solid var(--accent-light);
-      box-shadow: 0 16px 48px rgba(52, 152, 219, 0.25);
-      padding: 12px;
-      filter: saturate(1) brightness(1);
-      transition: all 0.4s var(--ease);
-      cursor: pointer;
-    }
-
-    .logoImg:hover {
-      box-shadow: 0 24px 64px rgba(52, 152, 219, 0.35);
-      transform: translateY(-4px);
-    }
-
-    .brand__content {
-      padding-bottom: 8px;
-    }
-
-    .brand__content h1 {
-      margin: 0;
-      font-family: 'Merriweather', serif;
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--accent-dark);
-      letter-spacing: -0.8px;
-      line-height: 1;
-    }
-
-    .brand__sub {
-      margin: 8px 0 0 0;
-      font-size: 13px;
-      color: var(--text-light);
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-bottom: 16px;
-    }
-
-    .nav__toggle {
-      display: none;
-      padding: 12px 16px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-      background: var(--card);
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s var(--ease);
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .nav__toggle:hover {
-      background: rgba(52, 152, 219, 0.05);
-      border-color: var(--accent-light);
-    }
-
-    .nav__menu {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav__link {
-      padding: 12px 18px;
-      border-radius: var(--radius-lg);
-      color: var(--text-light);
-      font-weight: 600;
-      font-size: 14px;
-      border: 1px solid transparent;
-      transition: all 0.25s var(--ease);
-      white-space: nowrap;
-    }
-
-    .nav__link:hover {
-      color: var(--accent);
-      background: rgba(52, 152, 219, 0.08);
-      border-color: var(--accent-light);
-    }
-
-    .nav__cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 20px;
-      border-radius: var(--radius-lg);
-      font-weight: 700;
-      color: white;
-      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-      border: 1px solid rgba(52, 152, 219, 0.4);
-      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.25);
-      cursor: pointer;
-      transition: all 0.25s var(--ease);
-      margin-inline-start: 8px;
-      font-size: 14px;
-    }
-
-    .nav__cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(52, 152, 219, 0.35);
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      padding: 60px 0 50px;
-    }
-
-    .heroBox {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(248, 246, 242, 0.7) 100%);
-      border: 1px solid rgba(52, 152, 219, 0.15);
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(42, 42, 42, 0.1);
-      padding: 70px 50px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .heroBox::before {
-      content: "";
-      position: absolute;
-      inset: -50% -50%;
-      width: 200%;
-      height: 200%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(52, 152, 219, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(41, 128, 185, 0.06) 0%, transparent 50%);
-      animation: drift 25s ease-in-out infinite;
-    }
-
-    @keyframes drift {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-40px, -40px); }
-    }
-
-    .heroBox > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .heroTitle {
-      font-family: 'Merriweather', serif;
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 900;
-      margin: 0 0 24px 0;
-      line-height: 1.08;
-      letter-spacing: -1.2px;
-      background: linear-gradient(135deg, #2874a6 0%, #3498db 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: none;
-    }
-
-    .heroLead {
-      font-size: 18px;
-      line-height: 1.8;
-      color: var(--text-light);
-      margin: 0 auto 36px;
-      max-width: 750px;
-      font-weight: 400;
-    }
-
-    .btnRow {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 40px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 32px;
-      border-radius: var(--radius-lg);
-      font-weight: 700;
-      font-size: 15px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.25s var(--ease);
-      gap: 10px;
-      user-select: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .btn--primary {
-      background: linear-gradient(135deg, #3498db 0%, #2874a6 100%);
-      color: white;
-      box-shadow: 0 12px 32px rgba(52, 152, 219, 0.3);
-      border: 1px solid rgba(52, 152, 219, 0.3);
-    }
-
-    .btn--primary:hover {
-      box-shadow: 0 16px 44px rgba(52, 152, 219, 0.4);
-    }
-
-    .btn--ghost {
-      background: rgba(255, 255, 255, 0.88);
-      border: 2px solid var(--accent);
-      color: var(--accent-dark);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn--ghost:hover {
-      background: white;
-      border-color: var(--accent-dark);
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn--wa {
-      background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-      color: white;
-      box-shadow: 0 12px 32px rgba(39, 174, 96, 0.3);
-      border: 1px solid rgba(39, 174, 96, 0.3);
-    }
-
-    .btn--wa:hover {
-      box-shadow: 0 16px 44px rgba(39, 174, 96, 0.4);
-    }
-
-    .btn--youtube {
-      background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
-      color: #2a2a2a;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .btn--youtube:hover {
-      background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.18);
-    }
-
-    /* ===== SECTIONS ===== */
-    .section {
-      padding: 80px 0;
-    }
-
-    .section--alt {
-      background: linear-gradient(180deg, rgba(52, 152, 219, 0.03) 0%, transparent 100%);
-    }
-
-    .titleWrap {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .sectionTitle {
-      font-family: 'Merriweather', serif;
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 900;
-      margin: 0;
-      line-height: 1.15;
-      letter-spacing: -0.8px;
-      color: var(--accent-dark);
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-
-    .sectionTitle::after {
-      content: "";
-      display: block;
-      width: 100px;
-      height: 5px;
-      background: linear-gradient(90deg, #3498db 0%, #2874a6 100%);
-      border-radius: 999px;
-      margin: 18px auto 0;
-      transition: all 0.4s var(--ease);
-    }
-
-    .sectionTitle:hover::after {
-      width: 140px;
-    }
-
-    .sectionSub {
-      font-size: 17px;
-      color: var(--text-light);
-      line-height: 1.7;
-      max-width: 750px;
-      margin: 18px auto 0;
-      font-weight: 400;
-    }
-
-    .grid {
-      display: grid;
-      gap: 28px;
-    }
-
-    .grid--2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .grid--3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(52, 152, 219, 0.12);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-      box-shadow: 0 8px 24px rgba(42, 42, 42, 0.08);
-      transition: all 0.3s var(--ease);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(8px);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s var(--ease);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent-light);
-      box-shadow: 0 16px 40px rgba(52, 152, 219, 0.15);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .card__title {
-      font-family: 'Merriweather', serif;
-      margin: 0 0 14px 0;
-      font-weight: 800;
-      font-size: 22px;
-      color: var(--accent-dark);
-      letter-spacing: -0.3px;
-    }
-
-    .card__text {
-      margin: 0;
-      color: var(--text-light);
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    .icon {
-      width: 64px;
-      height: 64px;
-      border-radius: var(--radius-lg);
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.12), rgba(41, 128, 185, 0.08));
-      border: 2px solid rgba(52, 152, 219, 0.2);
-      margin-bottom: 18px;
-      font-size: 32px;
-      user-select: none;
-      transition: all 0.3s var(--ease);
-      color: var(--accent-dark);
-      font-weight: bold;
-    }
-
-    .card:hover .icon {
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.12));
-      transform: scale(1.12) rotate(-5deg);
-    }
-
-    /* ===== DONATIONS ===== */
-    .donations {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .donCard {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(52, 152, 219, 0.12);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      min-height: 300px;
-      box-shadow: 0 8px 24px rgba(42, 42, 42, 0.08);
-      transition: all 0.3s var(--ease);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(8px);
-    }
-
-    .donCard::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s var(--ease);
-    }
-
-    .donCard:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-light);
-      box-shadow: 0 16px 40px rgba(52, 152, 219, 0.15);
-    }
-
-    .donCard:hover::before {
-      opacity: 1;
-    }
-
-    .donCard > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .donTop {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .donTitle {
-      font-family: 'Merriweather', serif;
-      margin: 0;
-      font-weight: 800;
-      font-size: 20px;
-      color: var(--accent-dark);
-      line-height: 1.3;
-    }
-
-    .donBadge {
-      font-size: 13px;
-      font-weight: 800;
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(52, 152, 219, 0.3);
-      background: rgba(52, 152, 219, 0.1);
-      color: var(--accent-dark);
-      white-space: nowrap;
-      letter-spacing: 0.5px;
-    }
-
-    .donDesc {
-      margin: 0;
-      color: var(--text-light);
-      line-height: 1.75;
-      font-size: 15px;
-    }
-
-    .donActions {
-      margin-top: auto;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn--mini {
-      padding: 11px 16px;
-      font-size: 13px;
-    }
-
-    /* ===== GALLERY ===== */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .gItem {
-      aspect-ratio: 1;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(52, 152, 219, 0.12);
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.08), rgba(41, 128, 185, 0.05));
-      box-shadow: 0 8px 24px rgba(42, 42, 42, 0.08);
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s var(--ease);
-    }
-
-    .gItem:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent-light);
-      box-shadow: 0 16px 40px rgba(52, 152, 219, 0.2);
-    }
-
-    .gItem img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s var(--ease), filter 0.4s var(--ease);
-      filter: brightness(0.98) contrast(1.08);
-    }
-
-    .gItem:hover img {
-      transform: scale(1.1);
-      filter: brightness(1.05) contrast(1.15);
-    }
-
-    /* ===== LIGHTBOX ===== */
-    .lb {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(42, 42, 42, 0.9);
-      z-index: 200;
-      padding: 20px;
-      backdrop-filter: blur(4px);
-    }
-
-    .lb.is-open {
-      display: flex;
-      animation: fadeIn 0.3s var(--ease);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .lbPanel {
-      width: min(920px, 100%);
-      border-radius: 20px;
-      background: rgba(248, 246, 242, 0.97);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(52, 152, 219, 0.15);
-      box-shadow: 0 50px 100px rgba(42, 42, 42, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lbImgWrap {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #f8f6f2, #ede6dc);
-    }
-
-    .lbImg {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
-      filter: drop-shadow(0 10px 25px rgba(42, 42, 42, 0.2));
-    }
-
-    .lbTop {
-      position: absolute;
-      inset: 16px 16px auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      pointer-events: none;
-    }
-
-    .lbChip {
-      pointer-events: auto;
-      padding: 10px 16px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(52, 152, 219, 0.2);
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--accent-dark);
-      box-shadow: 0 4px 12px rgba(42, 42, 42, 0.1);
-    }
-
-    .lbClose {
-      pointer-events: auto;
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      border: 1px solid rgba(52, 152, 219, 0.2);
-      background: rgba(255, 255, 255, 0.92);
-      color: var(--accent-dark);
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.2s var(--ease);
-      display: grid;
-      place-items: center;
-      font-size: 20px;
-      box-shadow: 0 4px 12px rgba(42, 42, 42, 0.1);
-    }
-
-    .lbClose:hover {
-      background: white;
-      transform: rotate(90deg);
-      box-shadow: 0 8px 20px rgba(42, 42, 42, 0.15);
-    }
-
-    .lbNavBtn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 50px;
-      height: 50px;
-      border-radius: 10px;
-      border: 1px solid rgba(52, 152, 219, 0.3);
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      cursor: pointer;
-      font-weight: 800;
-      transition: all 0.2s var(--ease);
-      display: grid;
-      place-items: center;
-      user-select: none;
-      font-size: 20px;
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:rgba(15,23,42,0.10);
+
+      --accent:#2563eb;
+      --accent2:#16a34a;
+      --accent3:#7c3aed;
+
+      --shadow: 0 14px 40px rgba(15,23,42,0.10);
+      --shadow2: 0 26px 80px rgba(15,23,42,0.14);
+      --radius:18px;
+      --radius2:26px;
+      --max:1120px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 700px at 10% 0%, rgba(37,99,235,0.10), transparent 55%),
+        radial-gradient(900px 700px at 100% 10%, rgba(124,58,237,0.10), transparent 55%),
+        radial-gradient(900px 700px at 70% 100%, rgba(22,163,74,0.08), transparent 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width:var(--max); margin:0 auto; padding:0 18px; }
+
+    /* ===== Header ===== */
+    .header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,0.82);
       backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header__inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:10px 0;
+      min-height:74px;
+      position:relative;
     }
 
-    .lbNavBtn:hover {
-      background: rgba(255, 255, 255, 0.35);
-      transform: translateY(-50%) scale(1.08);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 260px; }
+    .logoWrap{
+      position:relative;
+      width:86px; height:86px;
+      transform: translateY(12px); /* יוצא מחוץ למסגרת הכותרת */
+      flex: 0 0 auto;
     }
+    .logoImg{
+      width:86px; height:86px;
+      border-radius: 26px;
+      object-fit:contain;
+      background: rgba(255,255,255,0.92);
+      border:1px solid rgba(15,23,42,0.10);
+      box-shadow: 0 18px 55px rgba(15,23,42,0.18);
+      padding: 10px;
+      display:block;
 
-    .lbPrev {
-      right: 20px;
+      /* ניסיון להסרת גוון (אפשר לשחק עם הערכים אם צריך) */
+      filter: saturate(0.6) contrast(1.06) brightness(1.05);
+      mix-blend-mode: multiply;
     }
+    .brand__title{ font-weight:1000; line-height:1.05; letter-spacing:-0.3px; }
+    .brand__sub{ font-size:13px; color:var(--muted); margin-top:2px; }
 
-    .lbNext {
-      left: 20px;
+    .nav{ display:flex; align-items:center; gap:10px; }
+    .nav__toggle{
+      display:none;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font-weight:900;
+      box-shadow: 0 8px 18px rgba(15,23,42,0.06);
+      transition: transform .15s var(--ease);
     }
+    .nav__toggle:active{ transform: scale(0.98); }
+    .nav__menu{ display:flex; align-items:center; gap:6px; }
 
-    /* ===== YOUTUBE BANNER ===== */
-    .youtubeBanner {
-      background: linear-gradient(135deg, #f5f5f5 0%, #ececec 100%);
-      border-radius: var(--radius-lg);
-      padding: 50px;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-      margin: 70px 0;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(52, 152, 219, 0.1);
+    .nav__link{
+      padding:10px 12px;
+      border-radius:14px;
+      color:#334155;
+      font-weight:900;
+      border:1px solid transparent;
+      transition: .18s var(--ease);
+      white-space:nowrap;
     }
-
-    .youtubeBanner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 100% 100%, rgba(52, 152, 219, 0.05) 0%, transparent 60%);
-    }
-
-    .youtubeBanner > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .youtubeBanner__icon {
-      font-size: 64px;
-      margin-bottom: 16px;
-      display: inline-block;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .youtubeBanner h3 {
-      font-family: 'Merriweather', serif;
-      font-size: 32px;
-      font-weight: 900;
-      margin: 0 0 14px 0;
-      color: #2a2a2a;
-      letter-spacing: -0.5px;
-    }
-
-    .youtubeBanner p {
-      font-size: 17px;
-      color: #4a4a4a;
-      margin: 0 0 28px 0;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-      font-weight: 400;
-    }
-
-    /* ===== CONTACT ===== */
-    .contactGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
-    form {
-      display: grid;
-      gap: 18px;
-    }
-
-    label {
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--accent-dark);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
-
-    .field {
-      width: 100%;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(52, 152, 219, 0.15);
-      padding: 16px 18px;
-      font-size: 15px;
-      outline: none;
-      background: rgba(255, 255, 255, 0.93);
-      transition: all 0.25s var(--ease);
-      font-family: inherit;
-      color: var(--text);
-      backdrop-filter: blur(8px);
-    }
-
-    .field:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 10px rgba(52, 152, 219, 0.1);
-      background: white;
+    .nav__link:hover{
+      background:rgba(15,23,42,0.04);
+      border-color:rgba(15,23,42,0.08);
+      color:#0f172a;
       transform: translateY(-1px);
     }
-
-    textarea.field {
-      min-height: 160px;
-      resize: vertical;
+    .nav__cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:1000;
+      color:#fff;
+      background: linear-gradient(135deg, rgba(22,163,74,0.95), rgba(37,99,235,0.90));
+      box-shadow: 0 16px 40px rgba(22,163,74,0.18);
+      border:1px solid rgba(255,255,255,0.85);
+      position:relative;
+      margin-inline-start: 6px;
+      transition: .18s var(--ease);
+    }
+    .nav__cta:hover{ transform: translateY(-1px); }
+    .nav__cta::after{
+      content:"";
+      position:absolute; inset:-6px;
+      border-radius:14px;
+      border:2px solid rgba(22,163,74,0.28);
+      animation: pulse 1.8s ease-out infinite;
+    }
+    @keyframes pulse{
+      0%{ transform: scale(0.98); opacity: 0.75; }
+      70%{ transform: scale(1.06); opacity: 0; }
+      100%{ transform: scale(1.07); opacity: 0; }
     }
 
-    .notice {
+    /* ===== Hero ===== */
+    .hero{ padding: 56px 0 10px; }
+    .heroBox{
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(15,23,42,0.10);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      padding: 34px 18px;
+      text-align:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .heroBox::before{
+      content:"";
+      position:absolute;
+      inset:-90px -90px auto auto;
+      width: 360px; height: 360px;
+      border-radius:999px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(37,99,235,0.18), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(22,163,74,0.12), transparent 60%);
+      transform: rotate(10deg);
+      filter: blur(1px);
+    }
+    .heroTitle{
+      position:relative;
+      font-size: clamp(28px, 3.3vw, 52px);
+      margin:0 0 10px;
+      line-height:1.14;
+      letter-spacing:-0.8px;
+      font-weight: 1100;
+    }
+    .heroLead{
+      position:relative;
+      margin:0 auto 18px;
+      color:#334155;
+      font-size:16px;
+      max-width: 72ch;
+      line-height:1.85;
+    }
+
+    /* ===== Buttons ===== */
+    .btnRow{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-weight:1000;
+      border: 1px solid transparent;
+      cursor:pointer;
+      transition:.18s var(--ease);
+      gap:8px;
+      user-select:none;
+      position:relative;
+    }
+    .btn:hover{ transform: translateY(-2px); }
+    .btn:active{ transform: translateY(0); }
+
+    .btn--primary{
+      background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(124,58,237,0.85));
+      color:#fff;
+      box-shadow: 0 18px 55px rgba(37,99,235,0.18);
+      border-color: rgba(37,99,235,0.22);
+    }
+    .btn--ghost{
+      background: rgba(255,255,255,0.92);
+      border-color: rgba(15,23,42,0.14);
+      color:#0f172a;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+    }
+    .btn--wa{
+      background: linear-gradient(135deg, rgba(22,163,74,0.98), rgba(34,197,94,0.82));
+      color:#fff;
+      box-shadow: 0 18px 55px rgba(22,163,74,0.20);
+      border-color: rgba(255,255,255,0.65);
+    }
+
+    /* ===== Sections ===== */
+    .section{ padding: 44px 0; }
+    .section--alt{
+      background: rgba(255,255,255,0.62);
+      border-top: 1px solid rgba(15,23,42,0.06);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+
+    /* כותרת ממורכזת + פס */
+    .sectionTitle{
+      margin:0;
+      text-align:center;
+      font-size: 26px;
+      font-weight: 1100;
+      letter-spacing: -0.4px;
+      position:relative;
+      display:inline-block;
+      padding-bottom: 12px;
+    }
+    .titleWrap{ text-align:center; margin-bottom: 8px; }
+    .sectionTitle::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom: 2px;
+      transform: translateX(-50%);
+      width: 84px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(37,99,235,0.9), rgba(22,163,74,0.85));
+      transition: width .22s var(--ease), height .22s var(--ease), filter .22s var(--ease);
+      filter: saturate(1.05);
+    }
+    .sectionTitle:hover::after{
+      width: 128px;
+      height: 4px;
+      filter: saturate(1.25);
+    }
+    .sectionSub{
+      margin:0;
+      text-align:center;
+      color: var(--muted);
+      line-height:1.75;
+      max-width: 80ch;
+      margin-inline:auto;
+    }
+
+    .grid{ display:grid; gap:12px; }
+    .grid--2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid--3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+    .card{
+      background:#fff;
+      border:1px solid rgba(15,23,42,0.10);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.06);
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 22px 55px rgba(15,23,42,0.10);
+    }
+    .card__title{ margin:0 0 8px; font-weight:1100; letter-spacing:-0.2px; }
+    .card__text{ margin:0; color:#334155; line-height:1.85; }
+
+    .icon{
+      width:46px; height:46px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      background: rgba(15,23,42,0.04);
+      border: 1px solid rgba(15,23,42,0.08);
+      margin-bottom: 10px;
+      font-size: 20px;
+      user-select:none;
+    }
+
+    /* ===== Donations grid ===== */
+    .donations{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .donCard{
+      border-radius: var(--radius2);
+      border:1px solid rgba(15,23,42,0.10);
+      background: rgba(255,255,255,0.90);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 200px;
+      transition: transform .22s var(--ease);
+    }
+    .donCard:hover{ transform: translateY(-4px); }
+    .donCard::before{
+      content:"";
+      position:absolute;
+      inset:auto -120px -120px auto;
+      width: 260px; height: 260px;
+      border-radius:999px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(22,163,74,0.14), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(37,99,235,0.12), transparent 60%);
+      transform: rotate(-10deg);
+      filter: blur(1px);
+    }
+    .donCard > *{ position:relative; }
+
+    .donTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .donTitle{
+      margin:0;
+      font-weight:1100;
+      font-size: 17px;
+      letter-spacing:-0.2px;
+      line-height:1.25;
+    }
+    .donBadge{
+      font-size:12px;
+      font-weight:1100;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(37,99,235,0.18);
+      background: rgba(37,99,235,0.08);
+      color:#1f3a8a;
+      white-space:nowrap;
+    }
+    .donDesc{
+      margin:0;
+      color:#334155;
+      line-height:1.7;
       font-size: 14px;
-      color: var(--text-light);
-      line-height: 1.8;
-      margin: 0;
+    }
+    .donActions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-start;
+    }
+    .btn--mini{
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 14px;
     }
 
-    .status {
-      display: none;
-      padding: 14px 18px;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(52, 152, 219, 0.2);
-      background: rgba(255, 255, 255, 0.93);
+    /* ===== Gallery ===== */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+    }
+    .gItem{
+      height: 150px;
+      border-radius: var(--radius);
+      border:1px solid rgba(15,23,42,0.10);
+      background: linear-gradient(135deg, rgba(15,23,42,0.05), rgba(15,23,42,0.02));
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      transition: transform .22s var(--ease);
+    }
+    .gItem:hover{ transform: translateY(-3px); }
+    .gItem img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.01);
+      transition: transform .25s var(--ease), filter .25s var(--ease);
+      filter: saturate(1.02);
+    }
+    .gItem:hover img{ transform: scale(1.06); filter: saturate(1.08); }
+    .gBadge{
+      position:absolute;
+      inset:auto 10px 10px 10px;
+      padding:8px 10px;
+      border-radius:14px;
+      background: rgba(255,255,255,0.86);
+      border:1px solid rgba(15,23,42,0.12);
+      font-weight:1100;
+      color:#0f172a;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 28px rgba(15,23,42,0.14);
+      font-size: 12px;
+    }
+
+    /* Lightbox */
+    .lb{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(2,6,23,0.72);
+      z-index:200;
+      padding: 18px;
+    }
+    .lb.is-open{ display:flex; }
+    .lbPanel{
+      width: min(980px, 100%);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 34px 120px rgba(0,0,0,0.38);
+      position:relative;
+      overflow:hidden;
+    }
+    .lbImgWrap{
+      width:100%;
+      aspect-ratio: 16 / 10;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.06);
+    }
+    .lbImg{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit:contain;
+      display:block;
+      filter: drop-shadow(0 18px 55px rgba(0,0,0,0.35));
+      transform: translateZ(0);
+    }
+    .lbTop{
+      position:absolute;
+      inset: 10px 10px auto 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      pointer-events:none;
+    }
+    .lbChip{
+      pointer-events:auto;
+      padding:8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.86);
+      border:1px solid rgba(15,23,42,0.14);
+      font-weight:1100;
+      font-size: 13px;
+      color:#0f172a;
+    }
+    .lbClose{
+      pointer-events:auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.18);
+      color:#fff;
+      font-weight:1100;
+      cursor:pointer;
+      transition: transform .18s var(--ease), background .18s var(--ease);
+    }
+    .lbClose:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.24); }
+
+    .lbNavBtn{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.16);
+      color:#fff;
+      cursor:pointer;
+      font-weight:1100;
+      transition: transform .18s var(--ease), background .18s var(--ease);
+      display:grid;
+      place-items:center;
+      user-select:none;
+    }
+    .lbNavBtn:hover{ transform: translateY(-50%) scale(1.03); background: rgba(255,255,255,0.22); }
+    .lbPrev{ right: 12px; }
+    .lbNext{ left: 12px; }
+
+    /* ===== Contact ===== */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items:start;
+    }
+    form{ display:grid; gap:10px; }
+    label{
+      font-weight:1100;
+      font-size: 13px;
+      color:#334155;
+    }
+    .field{
+      width:100%;
+      border-radius: 16px;
+      border: 1px solid rgba(15,23,42,0.14);
+      padding: 12px 12px;
+      font-size: 15px;
+      outline:none;
+      background: rgba(255,255,255,0.92);
+      transition: .18s var(--ease);
+      font-family: inherit;
       color: var(--text);
-      font-weight: 700;
-      font-size: 14px;
+    }
+    .field:focus{
+      border-color: rgba(37,99,235,0.45);
+      box-shadow: 0 0 0 5px rgba(37,99,235,0.12);
+    }
+    textarea.field{ min-height: 130px; resize: vertical; }
+
+    .notice{
+      font-size: 13px;
+      color: var(--muted);
+      line-height:1.7;
+      margin:0;
+    }
+    .status{
+      display:none;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(15,23,42,0.12);
+      background: rgba(255,255,255,0.86);
+      color:#0f172a;
+      font-weight:1000;
+    }
+    .status--ok{
+      border-color: rgba(22,163,74,0.28);
+      background: rgba(22,163,74,0.10);
+      color:#065f46;
+    }
+    .status--bad{
+      border-color: rgba(220,38,38,0.28);
+      background: rgba(220,38,38,0.08);
+      color:#7f1d1d;
     }
 
-    .status--ok {
-      border-color: rgba(39, 174, 96, 0.4);
-      background: rgba(39, 174, 96, 0.1);
-      color: #27ae60;
+    /* Footer */
+    .footer{
+      padding: 22px 0 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footerRow{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+      border-top: 1px solid rgba(15,23,42,0.08);
+      padding-top: 16px;
     }
 
-    .status--bad {
-      border-color: rgba(231, 76, 60, 0.4);
-      background: rgba(231, 76, 60, 0.1);
-      color: #e74c3c;
-    }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      padding: 48px 0;
-      color: var(--text-light);
-      font-size: 14px;
-      border-top: 1px solid var(--line);
-      background: linear-gradient(180deg, transparent 0%, rgba(52, 152, 219, 0.03) 100%);
-    }
-
-    .footerRow {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    /* ===== ANIMATIONS ===== */
-    .reveal {
+    /* Smooth reveal animations */
+    .reveal{
       opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      transform: translateY(14px);
+      transition: opacity .55s var(--ease), transform .55s var(--ease);
       will-change: opacity, transform;
     }
-
-    .reveal.is-in {
+    .reveal.is-in{
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1040px) {
-      .donations {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .gallery {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .grid--3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    /* Responsive */
+    @media (max-width: 1040px){
+      .donations{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     }
-
-    @media (max-width: 768px) {
-      .header__inner {
-        padding: 10px 0 0 0;
-      }
-
-      .logoWrap {
-        width: 110px;
-        height: 110px;
-        margin-bottom: -35px;
-      }
-
-      .brand__content h1 {
-        font-size: 26px;
-      }
-
-      .brand__sub {
-        font-size: 11px;
-      }
-
-      .heroBox {
-        padding: 50px 30px;
-      }
-
-      .grid--2,
-      .grid--3 {
-        grid-template-columns: 1fr;
-      }
-
-      .donations {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .contactGrid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav__toggle {
-        display: inline-flex;
-      }
-
-      .nav__menu {
-        position: absolute;
+    @media (max-width: 920px){
+      .grid--3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .contactGrid{ grid-template-columns: 1fr; }
+      .logoWrap{ width:76px; height:76px; transform: translateY(10px); }
+      .logoImg{ width:76px; height:76px; border-radius:24px; padding:9px; }
+    }
+    @media (max-width: 720px){
+      .brand{ min-width: unset; }
+      .nav__toggle{ display:inline-flex; }
+      .nav__menu{
+        position:absolute;
         top: calc(100% + 10px);
         inset-inline: 0;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        padding: 14px;
-        background: rgba(255, 255, 255, 0.96);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-lg);
-        backdrop-filter: blur(12px);
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:6px;
+        padding: 10px;
+        background: rgba(255,255,255,0.92);
+        border:1px solid var(--line);
+        border-radius: var(--radius2);
+        box-shadow: var(--shadow2);
       }
-
-      .nav__menu.is-open {
-        display: flex;
-      }
-
-      .nav__link,
-      .nav__cta {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 14px;
-      }
-
-      .section {
-        padding: 60px 0;
-      }
-
-      .titleWrap {
-        margin-bottom: 48px;
-      }
-
-      .youtubeBanner {
-        padding: 40px 25px;
-        margin: 50px 0;
-      }
-
-      .youtubeBanner h3 {
-        font-size: 26px;
-      }
-
-      .youtubeBanner p {
-        font-size: 15px;
-      }
-
-      .youtubeBanner__icon {
-        font-size: 48px;
-      }
+      .nav__menu.is-open{ display:flex; }
+      .nav__link, .nav__cta{ width:100%; justify-content:center; }
+      .donations{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 0 16px;
-      }
-
-      .brand {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .logoWrap {
-        margin-bottom: 0;
-      }
-
-      .brand__content h1 {
-        text-align: center;
-        font-size: 22px;
-      }
-
-      .sectionTitle {
-        font-size: 28px;
-      }
-
-      .heroTitle {
-        font-size: 36px;
-      }
-
-      .btnRow {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .card {
-        padding: 24px;
-      }
-
-      .card__title {
-        font-size: 18px;
-      }
-
-      .lbNavBtn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-      }
-
-      .lbPrev {
-        right: 10px;
-      }
-
-      .lbNext {
-        left: 10px;
-      }
-    }
-
-    .anchor {
-      scroll-margin-top: 150px;
-    }
-
-    .sep {
-      height: 1px;
-      background: var(--line);
-      margin: 20px 0;
-      border-radius: 999px;
-    }
+    .anchor{ scroll-margin-top: 130px; }
+    .sep{ height:1px; background: rgba(15,23,42,0.08); margin: 12px 0; border-radius: 999px; }
   </style>
 </head>
 
@@ -1116,25 +629,26 @@
     <div class="container">
       <div class="header__inner">
         <div class="brand">
-          <div class="logoWrap">
+          <div class="logoWrap" aria-hidden="true">
+            <!-- הלוגו בתקיית השורש -->
             <img class="logoImg" src="לוגו שקוף.jpeg" alt="מוסדות בית שלמה">
           </div>
-          <div class="brand__content">
-            <h1>מוסדות בית שלמה</h1>
-            <div class="brand__sub">כולל | תורה | חסד</div>
+          <div>
+            <div class="brand__title">מוסדות בית שלמה</div>
+            <div class="brand__sub">כולל | שיעורי תורה | חסד – ראשון לציון</div>
           </div>
         </div>
 
-        <nav class="nav">
-          <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false">תפריט</button>
+        <nav class="nav" aria-label="תפריט">
+          <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">תפריט</button>
           <div class="nav__menu" id="navMenu">
             <a class="nav__link" href="#home">דף הבית</a>
             <a class="nav__link" href="#about">עלינו</a>
             <a class="nav__link" href="#activity">הפעילות</a>
             <a class="nav__link" href="#donate">תרומות</a>
             <a class="nav__link" href="#gallery">גלריה</a>
-            <a class="nav__link" href="#contact">קשר</a>
-            <a class="nav__cta" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרום</a>
+            <a class="nav__link" href="#contact">יצירת קשר</a>
+            <a class="nav__cta" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרומה כללית</a>
           </div>
         </nav>
       </div>
@@ -1145,14 +659,14 @@
   <main id="home" class="hero anchor">
     <div class="container">
       <div class="heroBox reveal">
-        <h1 class="heroTitle">תורה שמאיר�� את ראשון לציון</h1>
+        <h1 class="heroTitle">מוסדות בית שלמה – תורה שמאירה את העיר ראשון לציון</h1>
         <p class="heroLead">
-          מוסדות בית שלמה — בית של תורה, חיזוק וחסד בלב הקהילה. 
-          כולל אברכים, שיעורי תורה, מדרשיית נוער ופעילויות חסד עבור משפחות שלנו.
+          בית של תורה, חיזוק וחסד בלב הקהילה. אנו מחזיקים כולל אברכים, מקיימים שיעורי תורה מסודרים,
+          מפעילים מסגרות חינוך והכוונה לנוער, ומקדמים יוזמות חסד ועזרה למשפחות – במיוחד בתקופות החגים.
         </p>
         <div class="btnRow">
-          <a class="btn btn--primary" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרום עכשיו</a>
-          <a class="btn btn--ghost" href="#about">על הפעילות</a>
+          <a class="btn btn--primary" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרומה מאובטחת</a>
+          <a class="btn btn--ghost" href="#about">להכיר את הפעילות</a>
         </div>
       </div>
     </div>
@@ -1162,37 +676,35 @@
   <section id="about" class="section anchor">
     <div class="container">
       <div class="titleWrap reveal">
-        <h2 class="sectionTitle">על מוסדות בית שלמה</h2>
-        <p class="sectionSub">קהילה של תורה, חינוך וחסד — לכל אדם בכל גיל.</p>
+        <h2 class="sectionTitle">עלינו</h2>
+        <p class="sectionSub">החזקה קבועה של תורה, חינוך וחסד – לאורך כל השנה.</p>
       </div>
 
       <div class="grid grid--2">
         <div class="card reveal">
-          <div class="icon">◆</div>
-          <h3 class="card__title">בית מדרש חי</h3>
+          <h3 class="card__title">בית מדרש חי ונושם</h3>
           <p class="card__text">
-            מקום של תפילה, לימוד וחום אנושי. פה נפגשים אברכים וציבור לשיעורים קבועים, לעיון בתורה ולבניית קהילה אחת.
+            מוסדות בית שלמה פועלים כדי להעמיד בית מדרש יציב שמאיר את הסביבה: תפילות, לימוד מתמשך ושיעורים קבועים
+            – באווירה של רצינות, חום ואחדות.
           </p>
         </div>
         <div class="card reveal">
-          <div class="icon">✦</div>
           <h3 class="card__title">אחזקת אברכים</h3>
           <p class="card__text">
-            תמיכה כלכלית באברכי�� העוסקים בתורה. זהו עיקר השליחות שלנו — להגדיל תורה ולהעמי�� דוגמה רוחנית.
+            עיקר השליחות שלנו הוא החזקת אברכים העוסקים בתורה בעקביות. התמיכה מאפשרת להמשיך בלימוד בהרחבת הדעת,
+            לבנות בתים של תורה ולהעמיד דוגמה רוחנית לקהילה כולה.
           </p>
         </div>
         <div class="card reveal">
-          <div class="icon">⬥</div>
-          <h3 class="card__title">שיעורי תורה לציבור</h3>
+          <h3 class="card__title">שיעורי תורה ופעילות קהילתית</h3>
           <p class="card__text">
-            שיעורים ופעילויות חיזוק לכל הגילאים. מפרשת השבוע ועד הלכה יומיומית — בשפה בהירה ונגישה.
+            שיעורים מסודרים לאורך השבוע, מסגרות חיזוק ותכנים המחברים את הציבור לתורה באופן נגיש ומאיר – לכל גיל ולכל רמה.
           </p>
         </div>
         <div class="card reveal">
-          <div class="icon">◈</div>
-          <h3 class="card__title">חינוך נוער והכוונה</h3>
+          <h3 class="card__title">חינוך והכוונה לנוער</h3>
           <p class="card__text">
-            תכניות מדרשה, ליווי אישי וחיזוק ערכי. אנו בונים דור צעיר מחובר לתורה ולקהילה.
+            לצד הכולל, אנו מפתחים מסגרות של מדרשיית נוער: לימוד, שיחות חיזוק, ליווי אישי ותכניות שמעניקות שייכות ויציבות.
           </p>
         </div>
       </div>
@@ -1203,40 +715,40 @@
   <section id="activity" class="section section--alt anchor">
     <div class="container">
       <div class="titleWrap reveal">
-        <h2 class="sectionTitle">מה אנחנו עושים</h2>
-        <p class="sectionSub">פעילויות יומיומיות לשימור וגדילת התורה בקהילה.</p>
+        <h2 class="sectionTitle">הפעילות שלנו</h2>
+        <p class="sectionSub">תורה, קהילה וחסד – מהבוקר עד הלילה, ובמיוחד כשצריך.</p>
       </div>
 
       <div class="grid grid--3">
         <div class="card reveal">
-          <div class="icon">▣</div>
+          <div class="icon">📚</div>
           <h3 class="card__title">כולל אברכים</h3>
-          <p class="card__text">סדרי לימוד קבועים, התמדה, עיון עמוק בתורה — מתוך אחריות ללימוד איכותי.</p>
+          <p class="card__text">סדרי לימוד קבועים ומסודרים לאורך השנה, התמדה, עיון ועמל תורה – מתוך אחריות להגדיל תורה ולהאדירה.</p>
         </div>
         <div class="card reveal">
-          <div class="icon">◉</div>
-          <h3 class="card__title">שיעורים קבועים</h3>
-          <p class="card__text">לאורך כל השבוע, שיעורים בנושאים שונים — פרשה, הלכה, מוסר וחכמה.</p>
+          <div class="icon">🕯️</div>
+          <h3 class="card__title">שיעורי תורה לציבור</h3>
+          <p class="card__text">שיעורים ופעילויות חיזוק לקהל: הלכה, פרשת שבוע ותוכן מחזק – בשפה בהירה ועם לב פתוח.</p>
         </div>
         <div class="card reveal">
-          <div class="icon">⬟</div>
-          <h3 class="card__title">סיוע וחסד</h3>
-          <p class="card__text">תמיכה למשפחות בצרך, חלוקת מזון בחגים, ליווי אישי בקשיים.</p>
+          <div class="icon">🤝</div>
+          <h3 class="card__title">חסד ועזרה למשפחות</h3>
+          <p class="card__text">סיוע נקודתי לפי צורך, ליווי ותמיכה, ובחגים – חלוקת מזון כדי שלא יישאר בית בלי שמחה ובלי כבוד.</p>
         </div>
         <div class="card reveal">
-          <div class="icon">⋇</div>
-          <h3 class="card__title">מדרשה ונוער</h3>
-          <p class="card__text">תכניות חיזוק, שיחות, ליווי אישי ופעילויות למתנערים.</p>
+          <div class="icon">👥</div>
+          <h3 class="card__title">מדרשיית נוער</h3>
+          <p class="card__text">תכניות המשלבות לימוד, שיח וחיזוק, ליווי אישי ופעילות ערכית – כדי לבנות דור צעיר מחובר לתורה.</p>
         </div>
         <div class="card reveal">
-          <div class="icon">⬢</div>
-          <h3 class="card__title">חיבור קהילתי</h3>
-          <p class="card__text">בניית קשרים בין משפחות, אחריות הדדית וחום אנושי אמיתי.</p>
+          <div class="icon">🏘️</div>
+          <h3 class="card__title">קהילה וחיבור</h3>
+          <p class="card__text">חיבור בין משפחות ותושבים סביב נקודת אור אחת – בית המדרש. נתינה, אחריות הדדית וחום אנושי.</p>
         </div>
         <div class="card reveal">
-          <div class="icon">☆</div>
-          <h3 class="card__title">יוזמות עונתיות</h3>
-          <p class="card__text">פרויקטים מיוחדים בחגים, מחות וזמנים — לפי צורכי הקהילה.</p>
+          <div class="icon">💡</div>
+          <h3 class="card__title">יוזמות לאורך השנה</h3>
+          <p class="card__text">פרויקטים מיוחדים בזמנים שונים: מסגרות לימוד, פעילויות עידוד והתעלות – לפי צורכי התקופה והקהילה.</p>
         </div>
       </div>
     </div>
@@ -1246,52 +758,57 @@
   <section id="donate" class="section anchor">
     <div class="container">
       <div class="titleWrap reveal">
-        <h2 class="sectionTitle">שותפויות ותרומות</h2>
-        <p class="sectionSub">היצטרפו אלינו — כל תרומה משנה חיים ובונה עתיד טוב.</p>
+        <h2 class="sectionTitle">תרומות ושותפויות</h2>
+        <p class="sectionSub">בחרו יעד שותפות – כל לחיצה פותחת את עמוד התרומה הרלוונטי.</p>
       </div>
 
       <div class="donations">
         <div class="donCard reveal">
           <div class="donTop">
             <h3 class="donTitle">אחזקת אברך</h3>
-            <div class="donBadge">₪2,500/חודש</div>
+            <div class="donBadge">₪2,500 / חודש</div>
           </div>
-          <p class="donDesc">שותפות חודשית בהחזקת אברך לימוד. השקעה בדור הבא של תורה.</p>
+          <p class="donDesc">שותפות חודשית להחזקת אברך כולל. (12 חודשים)</p>
           <div class="donActions">
-            <a class="btn btn--primary btn--mini" href="https://nedar.im/eRRG" target="_blank" rel="noopener">תרום</a>
+            <a class="btn btn--primary btn--mini" href="https://nedar.im/eRRG" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">לתיאום</a>
           </div>
         </div>
 
         <div class="donCard reveal">
           <div class="donTop">
-            <h3 class="donTitle">קידום נוער</h3>
+            <h3 class="donTitle">תכנית קידום נוער בסיכון</h3>
             <div class="donBadge">₪400</div>
           </div>
-          <p class="donDesc">תמיכה בתכניות ליווי, חיזוק והכוונה לנוער בסיכון.</p>
+          <p class="donDesc">תמיכה בתכניות ליווי, חיזוק והכוונה לנוער.</p>
           <div class="donActions">
-            <a class="btn btn--primary btn--mini" href="https://nedar.im/gCBU" target="_blank" rel="noopener">תרום</a>
+            <a class="btn btn--primary btn--mini" href="https://nedar.im/gCBU" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">פרטים</a>
           </div>
         </div>
 
         <div class="donCard reveal">
           <div class="donTop">
-            <h3 class="donTitle">לימוד לעילוי נשמה</h3>
-            <div class="donBadge">₪500/חודש</div>
+            <h3 class="donTitle">לימוד קבוע לעילוי נשמה</h3>
+            <div class="donBadge">₪500 / חודש</div>
           </div>
-          <p class="donDesc">לימוד קבוע לעילוי נשמה. הקדישו לזכרון אהוביכם.</p>
+          <p class="donDesc">לימוד קבוע לעילוי נשמה – שותפות חודשית (12 חודשים).</p>
           <div class="donActions">
-            <a class="btn btn--primary btn--mini" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרום</a>
+            <!-- אם יש לך קישור ספציפי, החלף כאן -->
+            <a class="btn btn--primary btn--mini" href="https://nedar.im/QoNK" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">להקדשה</a>
           </div>
         </div>
 
         <div class="donCard reveal">
           <div class="donTop">
-            <h3 class="donTitle">הקדשת י��ם לימוד</h3>
+            <h3 class="donTitle">הקדשת יום לימוד בכולל אברכים</h3>
             <div class="donBadge">₪360</div>
           </div>
-          <p class="donDesc">הקדישו יום לימוד בכולל — לזכות, להצלחה ולעילוי נשמה.</p>
+          <p class="donDesc">הקדשת יום לימוד – לזכות, להצלחה ולעילוי נשמה.</p>
           <div class="donActions">
-            <a class="btn btn--primary btn--mini" href="https://nedar.im/kJkp" target="_blank" rel="noopener">תרום</a>
+            <a class="btn btn--primary btn--mini" href="https://nedar.im/kJkp" target="_blank" rel="noopener">לתרומה</a>
+            <a class="btn btn--ghost btn--mini" href="#contact">להוספת שם</a>
           </div>
         </div>
       </div>
@@ -1304,22 +821,14 @@
   </section>
 
   <!-- GALLERY -->
-  <section id="gallery" class="section section--alt anchor">
+  <section id="gallery" class="section anchor">
     <div class="container">
       <div class="titleWrap reveal">
         <h2 class="sectionTitle">גלריה</h2>
-        <p class="sectionSub">רגעים מחיי הקהילה — לחצו על תמונה להגדלה וגררו בין התמונות.</p>
+        <p class="sectionSub">התמונות נטענות לפי סדר: 1.jpg, 2.jpg, 3.jpg ... לחצו להגדלה.</p>
       </div>
 
-      <div class="gallery" id="galleryGrid"></div>
-
-      <!-- YouTube Banner -->
-      <div class="youtubeBanner reveal">
-        <div class="youtubeBanner__icon">▶</div>
-        <h3>תראו אותנו ביוטיוב</h3>
-        <p>צפו בשיעורים, בעדכונים מהקהילה ובתוכן רוחני בעברית בערוץ שלנו</p>
-        <a class="btn btn--youtube" href="[הכנס קישור ליוטיוב כאן]" target="_blank" rel="noopener">בקרו בערוץ ליוטיוב</a>
-      </div>
+      <div class="gallery" id="galleryGrid" aria-label="גלריה"></div>
     </div>
   </section>
 
@@ -1327,43 +836,54 @@
   <section id="contact" class="section section--alt anchor">
     <div class="container">
       <div class="titleWrap reveal">
-        <h2 class="sectionTitle">צרו קשר</h2>
-        <p class="sectionSub">אנחנו כאן בשביל שאלות, הצעות, או כל דבר אחר.</p>
+        <h2 class="sectionTitle">יצירת קשר</h2>
+        <p class="sectionSub">השאירו שם, מייל והודעה — או דברו איתנו בוואטסאפ.</p>
       </div>
 
       <div class="contactGrid">
         <div class="card reveal">
           <h3 class="card__title">שלחו הודעה</h3>
+
           <form id="contactForm">
             <div>
-              <label for="name">שם מלא</label>
-              <input class="field" id="name" type="text" placeholder="שמכם" required />
+              <label for="name">שם</label>
+              <input class="field" id="name" name="name" type="text" placeholder="שם מלא" required />
             </div>
+
             <div>
-              <label for="email">דוא״ל</label>
-              <input class="field" id="email" type="email" placeholder="email@example.com" required />
+              <label for="email">מייל</label>
+              <input class="field" id="email" name="email" type="email" placeholder="name@example.com" required />
             </div>
+
             <div>
               <label for="message">הודעה</label>
-              <textarea class="field" id="message" placeholder="כתבו את הודעתכם כאן..." required></textarea>
+              <textarea class="field" id="message" name="message" placeholder="כתבו כאן את ההודעה..." required></textarea>
             </div>
-            <div class="btnRow" style="justify-content: flex-start;">
-              <button class="btn btn--primary" type="submit" id="sendBtn">שלחו</button>
-              <a class="btn btn--wa" href="https://wa.me/972548828128" target="_blank" rel="noopener">וואטסאפ</a>
+
+            <div class="btnRow" style="justify-content:flex-start">
+              <button class="btn btn--primary" type="submit" id="sendBtn">שליחה</button>
+
+              <!-- כפתור וואטסאפ ליד יצירת קשר -->
+              <a class="btn btn--wa" id="waBtn" href="https://wa.me/972548828128" target="_blank" rel="noopener">
+                דברו איתנו בוואטסאפ
+              </a>
             </div>
-            <div class="status" id="statusBox"></div>
+
+            <div class="status" id="statusBox" role="status" aria-live="polite"></div>
+
+           
           </form>
         </div>
 
         <div class="card reveal">
-          <h3 class="card__title">פרטיים שלנו</h3>
+          <h3 class="card__title">פרטים</h3>
           <p class="card__text">
-            נשמח לשמוע מכם על שותפות, תמיכה, הצעות או כל עניין בקהילה שלנו.
+            נשמח לשמוע מכם לגבי שותפות, תמיכה, קביעת שיעור, או כל עניין בקהילה.
           </p>
           <div class="sep"></div>
-          <p class="notice">
-            <strong>לתרומה מאובטחת:</strong><br>
-            <a href="https://nedar.im/QoNK" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 700;">
+          <p class="notice" style="margin:0">
+            לתרומה מאובטחת:
+            <a href="https://nedar.im/QoNK8" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:1100;">
               לחצו כאן
             </a>
           </p>
@@ -1377,35 +897,40 @@
     <div class="container">
       <div class="footerRow">
         <div>© <span id="year"></span> מוסדות בית שלמה</div>
-        <div style="display: flex; gap: 24px; flex-wrap: wrap;">
-          <a class="nav__link" href="#home" style="color: var(--accent-dark); font-weight: 600;">דף הבית</a>
-          <a class="nav__link" href="#donate" style="color: var(--accent-dark); font-weight: 600;">תרומות</a>
-          <a class="nav__link" href="#contact" style="color: var(--accent-dark); font-weight: 600;">קשר</a>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="nav__link" href="#home">דף הבית</a>
+          <a class="nav__link" href="#donate">תרומות</a>
+          <a class="nav__link" href="#contact">יצירת קשר</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- LIGHTBOX -->
+  <!-- Lightbox -->
   <div class="lb" id="lightbox" aria-hidden="true">
-    <div class="lbPanel">
+    <div class="lbPanel" role="dialog" aria-modal="true" aria-label="תצוגת תמונה">
       <div class="lbTop">
-        <div class="lbChip" id="lbChip">1</div>
-        <button class="lbClose" id="lbClose" type="button">✕</button>
+        <div class="lbChip" id="lbChip">תמונה</div>
+        <button class="lbClose" id="lbClose" type="button" aria-label="סגירה">✕</button>
       </div>
-      <button class="lbNavBtn lbPrev" id="lbPrev" type="button">‹</button>
-      <button class="lbNavBtn lbNext" id="lbNext" type="button">›</button>
+
+      <button class="lbNavBtn lbPrev" id="lbPrev" type="button" aria-label="הקודם">›</button>
+      <button class="lbNavBtn lbNext" id="lbNext" type="button" aria-label="הבא">‹</button>
+
       <div class="lbImgWrap">
-        <img class="lbImg" id="lbImg" alt="" />
+        <img class="lbImg" id="lbImg" alt="תמונה בגלריה" />
       </div>
     </div>
   </div>
 
   <script>
+    // ===== Settings =====
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyw4rg4R8QMmNuQfud4o1AzTJG343CY4KekKRUxu-JV0HMrCn__oPTYsu9gd3YAqW2ozg/exec";
-    const GALLERY_MAX = 10;
 
-    // Mobile menu
+    // כמה תמונות יש לך בגלריה (שים מספר גדול, ואם חסר קובץ זה פשוט לא יוצג)
+    const GALLERY_MAX = 24; // 1.jpg ... 24.jpg
+
+    // ===== Mobile menu =====
     const navToggle = document.getElementById("navToggle");
     const navMenu = document.getElementById("navMenu");
     if (navToggle && navMenu) {
@@ -1421,9 +946,10 @@
       });
     }
 
+    // ===== Year =====
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Reveal on scroll
+    // ===== Reveal on scroll =====
     const revealEls = Array.from(document.querySelectorAll(".reveal"));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1432,7 +958,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // Contact form
+    // ===== Contact form -> GAS (urlencoded) =====
     const form = document.getElementById("contactForm");
     const statusBox = document.getElementById("statusBox");
     const sendBtn = document.getElementById("sendBtn");
@@ -1446,12 +972,13 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
 
       if (!name || !email || !message) {
-        setStatus("נא למלא את כל השדות.", false);
+        setStatus("נא למלא שם, מייל והודעה.", false);
         return;
       }
 
@@ -1460,29 +987,75 @@
 
       try {
         const body = new URLSearchParams({ name, email, message });
+
         const res = await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body
         });
 
+        const txt = await res.text();
+
         if (!res.ok) {
-          setStatus("השליחה נכשלה. נסו שוב.", false);
+          setStatus("השליחה לא הצליחה. נסו שוב בעוד רגע.", false);
+          console.error("GAS error:", res.status, txt);
         } else {
-          setStatus("ההודעה נשלחה בהצלחה! תודה רבה.", true);
+          setStatus("ההודעה נשלחה בהצלחה! נחזור אליכם בעזרת ה׳.", true);
           form.reset();
         }
       } catch (err) {
-        setStatus("שגיאה בשליחה. נסו שוב.", false);
+        console.error(err);
+        setStatus("שגיאה בשליחה (תקשורת). נסו שוב או מאוחר יותר.", false);
       } finally {
         sendBtn.disabled = false;
-        sendBtn.textContent = "שלחו";
+        sendBtn.textContent = "שליחה";
       }
     });
 
-    // Gallery & Lightbox
-    const galleryGrid = document.getElementById("galleryGrid");
-    const lightbox = document.getElementById("lightbox");
+    // ===== Gallery build (1.jpg..N) with graceful skip =====
+    const grid = document.getElementById("galleryGrid");
+    const gallery = [];
+    for (let i = 1; i <= GALLERY_MAX; i++) gallery.push(`${i}.jpg`);
+
+    // create cards; if image missing -> remove card
+    gallery.forEach((src, idx) => {
+      const item = document.createElement("div");
+      item.className = "gItem reveal";
+      item.setAttribute("role","button");
+      item.setAttribute("tabindex","0");
+      item.dataset.index = String(idx);
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `תמונה ${idx + 1}`;
+
+      img.addEventListener("error", () => {
+        // אם קובץ לא קיים - לא מציגים את הריבוע
+        item.remove();
+      });
+
+      const badge = document.createElement("div");
+      badge.className = "gBadge";
+      badge.textContent = `תמונה ${idx + 1}`;
+
+      item.appendChild(img);
+      item.appendChild(badge);
+      grid.appendChild(item);
+
+      // observe reveal for dynamically added items
+      io.observe(item);
+
+      item.addEventListener("click", () => openLightbox(idx));
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openLightbox(idx);
+        }
+      });
+    });
+
+    // ===== Lightbox logic (arrows + keyboard + swipe) =====
+    const lb = document.getElementById("lightbox");
     const lbImg = document.getElementById("lbImg");
     const lbChip = document.getElementById("lbChip");
     const lbClose = document.getElementById("lbClose");
@@ -1490,80 +1063,69 @@
     const lbNext = document.getElementById("lbNext");
 
     let currentIndex = 0;
-    let images = [];
-    let touchStartX = 0;
 
-    function loadGallery() {
-      for (let i = 1; i <= GALLERY_MAX; i++) {
-        const img = new Image();
-        img.src = `${i}.jpg`;
-        img.onload = () => {
-          const item = document.createElement("div");
-          item.className = "gItem";
-          item.innerHTML = `<img src="${i}.jpg" alt="תמונה ${i}" loading="lazy" />`;
-          item.addEventListener("click", () => {
-            currentIndex = images.indexOf(`${i}.jpg`);
-            openLightbox();
-          });
-          galleryGrid.appendChild(item);
-          images.push(`${i}.jpg`);
-        };
-        img.onerror = () => {};
-      }
-    }
+    function openLightbox(index){
+      // find visible items only (after removing missing)
+      const visible = Array.from(grid.querySelectorAll(".gItem"));
+      if (!visible.length) return;
 
-    function openLightbox() {
-      lbImg.src = images[currentIndex];
-      lbChip.textContent = `תמונה ${currentIndex + 1} מתוך ${images.length}`;
-      lightbox.classList.add("is-open");
+      // map index to visible index
+      const maxIdx = visible.length - 1;
+      currentIndex = Math.max(0, Math.min(index, maxIdx));
+
+      const src = visible[currentIndex].querySelector("img").getAttribute("src");
+      lbImg.src = src;
+      lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
+
+      lb.classList.add("is-open");
+      lb.setAttribute("aria-hidden","false");
       document.body.style.overflow = "hidden";
     }
 
-    function closeLightbox() {
-      lightbox.classList.remove("is-open");
+    function closeLightbox(){
+      lb.classList.remove("is-open");
+      lb.setAttribute("aria-hidden","true");
       document.body.style.overflow = "";
+      lbImg.src = "";
     }
 
-    function goToPrev() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      lbImg.src = images[currentIndex];
-      lbChip.textContent = `תמונה ${currentIndex + 1} מתוך ${images.length}`;
-    }
+    function step(delta){
+      const visible = Array.from(grid.querySelectorAll(".gItem"));
+      if (!visible.length) return;
 
-    function goToNext() {
-      currentIndex = (currentIndex + 1) % images.length;
-      lbImg.src = images[currentIndex];
-      lbChip.textContent = `תמונה ${currentIndex + 1} מתוך ${images.length}`;
+      currentIndex = (currentIndex + delta + visible.length) % visible.length;
+      const src = visible[currentIndex].querySelector("img").getAttribute("src");
+      lbImg.src = src;
+      lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
     }
 
     lbClose.addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
+    lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
+    lbPrev.addEventListener("click", () => step(-1));
+    lbNext.addEventListener("click", () => step(+1));
 
-    lbPrev.addEventListener("click", goToPrev);
-    lbNext.addEventListener("click", goToNext);
-
-    // Keyboard navigation
     document.addEventListener("keydown", (e) => {
-      if (!lightbox.classList.contains("is-open")) return;
+      if (!lb.classList.contains("is-open")) return;
       if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") goToPrev();
-      if (e.key === "ArrowRight") goToNext();
+      if (e.key === "ArrowLeft") step(+1);
+      if (e.key === "ArrowRight") step(-1);
     });
 
-    // Touch/Swipe support
-    lightbox.addEventListener("touchstart", (e) => {
-      touchStartX = e.touches[0].clientX;
-    });
+    // swipe
+    let xStart = null;
+    lb.addEventListener("touchstart", (e) => {
+      if (!lb.classList.contains("is-open")) return;
+      xStart = e.touches[0].clientX;
+    }, {passive:true});
 
-    lightbox.addEventListener("touchend", (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      if (touchStartX - touchEndX > 50) goToNext();
-      if (touchEndX - touchStartX > 50) goToPrev();
-    });
-
-    loadGallery();
+    lb.addEventListener("touchend", (e) => {
+      if (xStart === null) return;
+      const xEnd = e.changedTouches[0].clientX;
+      const dx = xEnd - xStart;
+      xStart = null;
+      if (Math.abs(dx) < 40) return;
+      if (dx > 0) step(-1); else step(+1);
+    }, {passive:true});
   </script>
 </body>
 </html>
