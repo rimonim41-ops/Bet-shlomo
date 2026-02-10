@@ -63,15 +63,23 @@
       position:relative;
     }
 
-    .brand{ display:flex; align-items:center; gap:10px; min-width: 420px; }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 420px;
+      position: relative;
+      padding-inline-start: 180px;
+    }
     .logoWrap{
       position:relative;
-      width:94px; height:94px;
-      transform: translateY(16px);
+      width:282px; height:282px;
+      transform: translate(66px, 26px);
       flex: 0 0 auto;
+      pointer-events: none;
     }
     .logoImg{
-      width:94px; height:94px;
+      width:282px; height:282px;
       border-radius: 20px;
       object-fit:contain;
       background: rgba(255,255,255,0.92);
@@ -550,13 +558,15 @@
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
-      .logoWrap{ width:74px; height:74px; transform: translateY(10px); }
-      .logoImg{ width:74px; height:74px; border-radius:16px; padding:6px; }
+      .brand{ padding-inline-start: 95px; }
+      .logoWrap{ width:150px; height:150px; transform: translate(18px, 18px); }
+      .logoImg{ width:150px; height:150px; border-radius:16px; padding:6px; }
       .brand__title{ font-size:18px; }
       .brand__sub{ font-size:14px; }
     }
     @media (max-width: 720px){
       .brand{ min-width: unset; gap:10px; }
+      .brand{ padding-inline-start: 0; }
       .logoWrap{ width:66px; height:66px; transform: translateY(8px); }
       .logoImg{ width:66px; height:66px; border-radius:14px; padding:5px; }
       .brand__title{ font-size:16px; }
@@ -842,6 +852,12 @@
           <h3 class="card__title">פרטים</h3>
           <p class="card__text">
             נשמח לשמוע מכם לגבי שותפות, תמיכה, קביעת שיעור, או כל עניין בקהילה.
+          </p>
+          <p class="notice" style="margin:10px 0 0">
+            כתובתנו: רחוב שלמה המלך 10 ראשון לציון, במקלט
+          </p>
+          <p class="notice" style="margin:4px 0 0">
+            טלפון ליצירת קשר: <a href="tel:0548828128" style="text-decoration:underline; font-weight:1100;">054-882-8128</a>
           </p>
           <div class="sep"></div>
           <p class="notice" style="margin:0">
