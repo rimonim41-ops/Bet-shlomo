@@ -57,34 +57,34 @@
     }
     .header__inner{
       display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:10px 0;
-      min-height:92px;
+      gap:10px; padding:6px 0;
+      min-height:clamp(52px, 7vh, 72px);
       position:relative;
     }
 
-    .brand{ display:flex; align-items:center; gap:20px; min-width: 520px; }
+    .brand{ display:flex; align-items:center; gap:10px; min-width: 420px; }
     .logoWrap{
       position:relative;
-      width:360px; height:360px;
+      width:68px; height:68px;
       transform: none;
       flex: 0 0 auto;
     }
     .logoImg{
-      width:360px; height:360px;
-      border-radius: 52px;
+      width:68px; height:68px;
+      border-radius: 16px;
       object-fit:contain;
       background: rgba(255,255,255,0.92);
       border:1px solid rgba(15,23,42,0.10);
-      box-shadow: 0 18px 55px rgba(15,23,42,0.18);
-      padding: 20px;
+      box-shadow: 0 8px 20px rgba(15,23,42,0.14);
+      padding: 6px;
       display:block;
 
       /* ניסיון להסרת גוון (אפשר לשחק עם הערכים אם צריך) */
       filter: saturate(0.6) contrast(1.06) brightness(1.05);
       mix-blend-mode: multiply;
     }
-    .brand__title{ font-weight:1000; line-height:1.12; letter-spacing:-0.3px; font-size:28px; }
-    .brand__sub{ font-size:16px; color:var(--muted); margin-top:4px; }
+    .brand__title{ font-weight:1000; line-height:1.08; letter-spacing:-0.3px; font-size:clamp(16px, 1.9vw, 22px); }
+    .brand__sub{ font-size:12px; color:var(--muted); margin-top:2px; }
 
     .nav{ display:flex; align-items:center; gap:10px; }
     .nav__toggle{
@@ -377,29 +377,6 @@
       grid-template-columns: repeat(4, minmax(0,1fr));
       gap: 14px;
     }
-    .galleryMain{
-      margin-bottom:16px;
-      border-radius: var(--radius2);
-      border:1px solid rgba(15,23,42,0.10);
-      background: rgba(255,255,255,0.9);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      cursor:pointer;
-    }
-    .galleryMain__img{
-      width:100%;
-      max-height: 500px;
-      object-fit: contain;
-      background: rgba(15,23,42,0.03);
-      display:block;
-    }
-    .galleryMain__caption{
-      padding: 12px 14px;
-      border-top:1px solid rgba(15,23,42,0.08);
-      font-weight: 1000;
-      font-size: 14px;
-      color:#0f172a;
-    }
     .gItem{
       border-radius: var(--radius);
       border:1px solid rgba(15,23,42,0.10);
@@ -407,17 +384,14 @@
       box-shadow: 0 14px 34px rgba(15,23,42,0.06);
       overflow:hidden;
       position:relative;
-      cursor:pointer;
       transition: transform .22s var(--ease);
       display:flex;
       flex-direction:column;
     }
     .gItem:hover{ transform: translateY(-3px); }
-    .gItem.is-active{
-      outline: 3px solid rgba(37,99,235,0.42);
-      outline-offset: 2px;
-    }
-    .gItem img{
+    .gMedia,
+    .gItem img,
+    .gItem video{
       width:100%;
       height:180px;
       object-fit:cover;
@@ -425,8 +399,11 @@
       transform: scale(1.01);
       transition: transform .25s var(--ease), filter .25s var(--ease);
       filter: saturate(1.02);
+      background: rgba(15,23,42,0.05);
     }
-    .gItem:hover img{ transform: scale(1.06); filter: saturate(1.08); }
+    .gItem:hover .gMedia,
+    .gItem:hover img,
+    .gItem:hover video{ transform: scale(1.06); filter: saturate(1.08); }
     .gCaption{
       padding:10px;
       border-top:1px solid rgba(15,23,42,0.08);
@@ -435,95 +412,6 @@
       color:#0f172a;
       font-size: 13px;
     }
-
-    /* Lightbox */
-    .lb{
-      position:fixed; inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      background: rgba(2,6,23,0.72);
-      z-index:200;
-      padding: 18px;
-    }
-    .lb.is-open{ display:flex; }
-    .lbPanel{
-      width: min(980px, 100%);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 34px 120px rgba(0,0,0,0.38);
-      position:relative;
-      overflow:hidden;
-    }
-    .lbImgWrap{
-      width:100%;
-      aspect-ratio: 16 / 10;
-      display:grid;
-      place-items:center;
-      background: rgba(255,255,255,0.06);
-    }
-    .lbImg{
-      max-width: 100%;
-      max-height: 100%;
-      object-fit:contain;
-      display:block;
-      filter: drop-shadow(0 18px 55px rgba(0,0,0,0.35));
-      transform: translateZ(0);
-    }
-    .lbTop{
-      position:absolute;
-      inset: 10px 10px auto 10px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      pointer-events:none;
-    }
-    .lbChip{
-      pointer-events:auto;
-      padding:8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.86);
-      border:1px solid rgba(15,23,42,0.14);
-      font-weight:1100;
-      font-size: 13px;
-      color:#0f172a;
-    }
-    .lbClose{
-      pointer-events:auto;
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.18);
-      color:#fff;
-      font-weight:1100;
-      cursor:pointer;
-      transition: transform .18s var(--ease), background .18s var(--ease);
-    }
-    .lbClose:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.24); }
-
-    .lbNavBtn{
-      position:absolute;
-      top:50%;
-      transform: translateY(-50%);
-      width: 44px; height: 44px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.16);
-      color:#fff;
-      cursor:pointer;
-      font-weight:1100;
-      transition: transform .18s var(--ease), background .18s var(--ease);
-      display:grid;
-      place-items:center;
-      user-select:none;
-    }
-    .lbNavBtn:hover{ transform: translateY(-50%) scale(1.03); background: rgba(255,255,255,0.22); }
-    .lbPrev{ right: 12px; }
-    .lbNext{ left: 12px; }
 
     /* ===== Contact ===== */
     .contactGrid{
@@ -617,17 +505,17 @@
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
-      .logoWrap{ width:250px; height:250px; }
-      .logoImg{ width:250px; height:250px; border-radius:36px; padding:14px; }
-      .brand__title{ font-size:20px; }
+      .logoWrap{ width:56px; height:56px; }
+      .logoImg{ width:56px; height:56px; border-radius:14px; padding:5px; }
+      .brand__title{ font-size:18px; }
       .brand__sub{ font-size:14px; }
     }
     @media (max-width: 720px){
       .brand{ min-width: unset; gap:10px; }
-      .logoWrap{ width:180px; height:180px; }
-      .logoImg{ width:180px; height:180px; border-radius:28px; padding:10px; }
-      .brand__title{ font-size:18px; }
-      .brand__sub{ font-size:13px; }
+      .logoWrap{ width:48px; height:48px; }
+      .logoImg{ width:48px; height:48px; border-radius:12px; padding:4px; }
+      .brand__title{ font-size:16px; }
+      .brand__sub{ font-size:11px; }
       .nav__toggle{ display:inline-flex; }
       .nav__menu{
         position:absolute;
@@ -856,13 +744,8 @@
     <div class="container">
       <div class="titleWrap reveal">
         <h2 class="sectionTitle">גלריה</h2>
-        <p class="sectionSub">תמונה ראשית למעלה וקוביות מתחת. לחיצה על תמונה פותחת תצוגה גדולה עם ניווט ימינה/שמאלה.</p>
       </div>
 
-      <div class="galleryMain reveal" id="galleryMain" role="button" tabindex="0" aria-label="פתח תצוגת תמונה מוגדלת">
-        <img class="galleryMain__img" id="galleryMainImg" alt="תמונה ראשית בגלריה" />
-        <div class="galleryMain__caption" id="galleryMainCaption">תמונה ראשית</div>
-      </div>
 
       <div class="gallery" id="galleryGrid" aria-label="גלריה"></div>
     </div>
@@ -941,29 +824,12 @@
     </div>
   </footer>
 
-  <!-- Lightbox -->
-  <div class="lb" id="lightbox" aria-hidden="true">
-    <div class="lbPanel" role="dialog" aria-modal="true" aria-label="תצוגת תמונה">
-      <div class="lbTop">
-        <div class="lbChip" id="lbChip">תמונה</div>
-        <button class="lbClose" id="lbClose" type="button" aria-label="סגירה">✕</button>
-      </div>
-
-      <button class="lbNavBtn lbPrev" id="lbPrev" type="button" aria-label="הקודם">›</button>
-      <button class="lbNavBtn lbNext" id="lbNext" type="button" aria-label="הבא">‹</button>
-
-      <div class="lbImgWrap">
-        <img class="lbImg" id="lbImg" alt="תמונה בגלריה" />
-      </div>
-    </div>
-  </div>
-
   <script>
     // ===== Settings =====
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyw4rg4R8QMmNuQfud4o1AzTJG343CY4KekKRUxu-JV0HMrCn__oPTYsu9gd3YAqW2ozg/exec";
 
     // כמה תמונות יש לך בגלריה (שים מספר גדול, ואם חסר קובץ זה פשוט לא יוצג)
-    const GALLERY_MAX = 10; // 1.jpg ... 10.jpg
+    const GALLERY_MAX = 20; // 1...20 תמונה/וידאו
 
     // ===== Mobile menu =====
     const navToggle = document.getElementById("navToggle");
@@ -1047,175 +913,93 @@
       }
     });
 
-    // ===== Gallery build (1.jpg..N) with graceful skip =====
+    // ===== Gallery build (1..20) with image/video support =====
     const grid = document.getElementById("galleryGrid");
-    const galleryMain = document.getElementById("galleryMain");
-    const galleryMainImg = document.getElementById("galleryMainImg");
-    const galleryMainCaption = document.getElementById("galleryMainCaption");
     const gallery = [];
-    for (let i = 1; i <= GALLERY_MAX; i++) gallery.push(`${i}.jpg`);
+    for (let i = 1; i <= GALLERY_MAX; i++) gallery.push(i);
 
-    function setMainImageByItem(item){
-      if (!item) return;
-      const imgEl = item.querySelector("img");
-      const src = imgEl?.getAttribute("src");
-      if (!src) return;
-      galleryMainImg.src = src;
-      galleryMainCaption.textContent = src;
-      grid.querySelectorAll(".gItem").forEach(el => el.classList.remove("is-active"));
-      item.classList.add("is-active");
+    const captionsByIndex = {
+      1: "הרב שלמה דשן עם הרב שאול גבאי",
+      2: "בשמחה את התורה",
+      3: "באמצע הלימוד"
+    };
+
+    const mediaExtensions = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG", "webp", "WEBP", "mp4", "MP4", "webm", "WEBM", "mov", "MOV"];
+
+    function isVideoExtension(ext){
+      return ["mp4", "MP4", "webm", "WEBM", "mov", "MOV"].includes(ext);
     }
 
-    // create cards; if image missing -> remove card
-    gallery.forEach((src, idx) => {
-      const item = document.createElement("div");
-      item.className = "gItem reveal";
-      item.setAttribute("role","button");
-      item.setAttribute("tabindex","0");
-      item.dataset.index = String(idx);
+    function resolveMediaSource(baseName, onDone){
+      const candidates = mediaExtensions.map(ext => ({
+        src: `${baseName}.${ext}`,
+        isVideo: isVideoExtension(ext)
+      }));
+      let cursor = 0;
 
-      const img = document.createElement("img");
-      const fallbackSources = [
-        src,
-        `${idx + 1}.JPG`,
-        `${idx + 1}.jpeg`,
-        `${idx + 1}.JPEG`,
-        `${idx + 1}.jpg.jpg`,
-        `${idx + 1}.jpg.JPG`,
-        `${idx + 1}jpg.jpg`
-      ];
-      let sourceIdx = 0;
-      img.src = fallbackSources[sourceIdx];
-      img.alt = `${idx + 1}.jpg`;
-
-      img.addEventListener("error", () => {
-        sourceIdx += 1;
-        if (sourceIdx < fallbackSources.length) {
-          img.src = fallbackSources[sourceIdx];
+      const tryNext = () => {
+        if (cursor >= candidates.length) {
+          onDone(null);
           return;
         }
-        // אם קובץ לא קיים - לא מציגים את הריבוע
-        item.remove();
-      });
+
+        const candidate = candidates[cursor++];
+        if (candidate.isVideo) {
+          const probe = document.createElement("video");
+          probe.preload = "metadata";
+          probe.src = candidate.src;
+          probe.onloadeddata = () => onDone(candidate);
+          probe.onerror = tryNext;
+          return;
+        }
+
+        const probe = new Image();
+        probe.onload = () => onDone(candidate);
+        probe.onerror = tryNext;
+        probe.src = candidate.src;
+      };
+
+      tryNext();
+    }
+
+    gallery.forEach((num, idx) => {
+      const item = document.createElement("div");
+      item.className = "gItem reveal";
+      item.dataset.index = String(idx);
+
+      const mediaSlot = document.createElement("div");
+      mediaSlot.className = "gMedia";
 
       const caption = document.createElement("div");
       caption.className = "gCaption";
-      caption.textContent = "תמונתתמונות";
+      caption.textContent = captionsByIndex[num] || `פריט ${num}`;
 
-      item.appendChild(img);
+      item.appendChild(mediaSlot);
       item.appendChild(caption);
-      grid.appendChild(item);
 
-      // observe reveal for dynamically added items
-      io.observe(item);
+      resolveMediaSource(String(num), (found) => {
+        if (!found) return;
 
-      item.addEventListener("click", () => {
-        setMainImageByItem(item);
-        const visibleIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(item);
-        openLightbox(visibleIndex);
-      });
-      item.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          setMainImageByItem(item);
-          const visibleIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(item);
-          openLightbox(visibleIndex);
+        if (found.isVideo) {
+          const video = document.createElement("video");
+          video.src = found.src;
+          video.controls = true;
+          video.preload = "metadata";
+          video.setAttribute("playsinline", "");
+          video.className = "gMedia";
+          mediaSlot.replaceWith(video);
+        } else {
+          const img = document.createElement("img");
+          img.src = found.src;
+          img.alt = `מדיה ${num}`;
+          img.className = "gMedia";
+          mediaSlot.replaceWith(img);
         }
+
+        grid.appendChild(item);
+        io.observe(item);
       });
     });
-
-    const firstItem = grid.querySelector(".gItem");
-    setMainImageByItem(firstItem);
-
-    galleryMain.addEventListener("click", () => {
-      const activeItem = grid.querySelector(".gItem.is-active") || grid.querySelector(".gItem");
-      if (!activeItem) return;
-      const activeIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(activeItem);
-      openLightbox(activeIndex);
-    });
-    galleryMain.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter" && e.key !== " ") return;
-      e.preventDefault();
-      const activeItem = grid.querySelector(".gItem.is-active") || grid.querySelector(".gItem");
-      if (!activeItem) return;
-      const activeIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(activeItem);
-      openLightbox(activeIndex);
-    });
-
-    // ===== Lightbox logic (arrows + keyboard + swipe) =====
-    const lb = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lbImg");
-    const lbChip = document.getElementById("lbChip");
-    const lbClose = document.getElementById("lbClose");
-    const lbPrev = document.getElementById("lbPrev");
-    const lbNext = document.getElementById("lbNext");
-
-    let currentIndex = 0;
-
-    function openLightbox(index){
-      // find visible items only (after removing missing)
-      const visible = Array.from(grid.querySelectorAll(".gItem"));
-      if (!visible.length) return;
-
-      // map index to visible index
-      const maxIdx = visible.length - 1;
-      currentIndex = Math.max(0, Math.min(index, maxIdx));
-
-      const src = visible[currentIndex].querySelector("img").getAttribute("src");
-      lbImg.src = src;
-      lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
-      setMainImageByItem(visible[currentIndex]);
-
-      lb.classList.add("is-open");
-      lb.setAttribute("aria-hidden","false");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeLightbox(){
-      lb.classList.remove("is-open");
-      lb.setAttribute("aria-hidden","true");
-      document.body.style.overflow = "";
-      lbImg.src = "";
-    }
-
-    function step(delta){
-      const visible = Array.from(grid.querySelectorAll(".gItem"));
-      if (!visible.length) return;
-
-      currentIndex = (currentIndex + delta + visible.length) % visible.length;
-      const src = visible[currentIndex].querySelector("img").getAttribute("src");
-      lbImg.src = src;
-      lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
-      setMainImageByItem(visible[currentIndex]);
-    }
-
-    lbClose.addEventListener("click", closeLightbox);
-    lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
-    lbPrev.addEventListener("click", () => step(-1));
-    lbNext.addEventListener("click", () => step(+1));
-
-    document.addEventListener("keydown", (e) => {
-      if (!lb.classList.contains("is-open")) return;
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") step(+1);
-      if (e.key === "ArrowRight") step(-1);
-    });
-
-    // swipe
-    let xStart = null;
-    lb.addEventListener("touchstart", (e) => {
-      if (!lb.classList.contains("is-open")) return;
-      xStart = e.touches[0].clientX;
-    }, {passive:true});
-
-    lb.addEventListener("touchend", (e) => {
-      if (xStart === null) return;
-      const xEnd = e.changedTouches[0].clientX;
-      const dx = xEnd - xStart;
-      xStart = null;
-      if (Math.abs(dx) < 40) return;
-      if (dx > 0) step(-1); else step(+1);
-    }, {passive:true});
   </script>
 </body>
 </html>
