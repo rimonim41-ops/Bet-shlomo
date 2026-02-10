@@ -58,33 +58,34 @@
     .header__inner{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; padding:10px 0;
-      min-height:74px;
+      min-height:58px;
       position:relative;
+      overflow: visible;
     }
 
-    .brand{ display:flex; align-items:center; gap:12px; min-width: 260px; }
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 0; }
     .logoWrap{
       position:relative;
-      width:86px; height:86px;
-      transform: translateY(12px); /* יוצא מחוץ למסגרת הכותרת */
+      width:248px; height:248px;
+      transform: translateY(32px);
       flex: 0 0 auto;
     }
     .logoImg{
-      width:86px; height:86px;
-      border-radius: 26px;
+      width:248px; height:248px;
+      border-radius: 42px;
       object-fit:contain;
       background: rgba(255,255,255,0.92);
       border:1px solid rgba(15,23,42,0.10);
       box-shadow: 0 18px 55px rgba(15,23,42,0.18);
-      padding: 10px;
+      padding: 16px;
       display:block;
 
       /* ניסיון להסרת גוון (אפשר לשחק עם הערכים אם צריך) */
       filter: saturate(0.6) contrast(1.06) brightness(1.05);
       mix-blend-mode: multiply;
     }
-    .brand__title{ font-weight:1000; line-height:1.05; letter-spacing:-0.3px; }
-    .brand__sub{ font-size:13px; color:var(--muted); margin-top:2px; }
+    .brand__title{ font-weight:1000; line-height:1.05; letter-spacing:-0.3px; font-size:24px; }
+    .brand__sub{ font-size:16px; color:var(--muted); margin-top:4px; }
 
     .nav{ display:flex; align-items:center; gap:10px; }
     .nav__toggle{
@@ -378,7 +379,7 @@
       gap: 10px;
     }
     .gItem{
-      height: 150px;
+      height: 180px;
       border-radius: var(--radius);
       border:1px solid rgba(15,23,42,0.10);
       background: linear-gradient(135deg, rgba(15,23,42,0.05), rgba(15,23,42,0.02));
@@ -389,6 +390,10 @@
       transition: transform .22s var(--ease);
     }
     .gItem:hover{ transform: translateY(-3px); }
+    .gItem.is-active{
+      outline: 3px solid rgba(37,99,235,0.42);
+      outline-offset: 2px;
+    }
     .gItem img{
       width:100%; height:100%;
       object-fit:cover;
@@ -398,19 +403,6 @@
       filter: saturate(1.02);
     }
     .gItem:hover img{ transform: scale(1.06); filter: saturate(1.08); }
-    .gBadge{
-      position:absolute;
-      inset:auto 10px 10px 10px;
-      padding:8px 10px;
-      border-radius:14px;
-      background: rgba(255,255,255,0.86);
-      border:1px solid rgba(15,23,42,0.12);
-      font-weight:1100;
-      color:#0f172a;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 12px 28px rgba(15,23,42,0.14);
-      font-size: 12px;
-    }
 
     /* Lightbox */
     .lb{
@@ -592,11 +584,18 @@
       .grid--3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
-      .logoWrap{ width:76px; height:76px; transform: translateY(10px); }
-      .logoImg{ width:76px; height:76px; border-radius:24px; padding:9px; }
+      .brand{ min-width: unset; }
+      .logoWrap{ width:150px; height:150px; transform: translateY(18px); }
+      .logoImg{ width:150px; height:150px; border-radius:30px; padding:12px; }
+      .brand__title{ font-size:20px; }
+      .brand__sub{ font-size:14px; }
     }
     @media (max-width: 720px){
-      .brand{ min-width: unset; }
+      .brand{ min-width: unset; gap:10px; }
+      .logoWrap{ width:106px; height:106px; transform: translateY(10px); }
+      .logoImg{ width:106px; height:106px; border-radius:24px; padding:10px; }
+      .brand__title{ font-size:18px; }
+      .brand__sub{ font-size:13px; }
       .nav__toggle{ display:inline-flex; }
       .nav__menu{
         position:absolute;
@@ -615,7 +614,7 @@
       .nav__menu.is-open{ display:flex; }
       .nav__link, .nav__cta{ width:100%; justify-content:center; }
       .donations{ grid-template-columns: 1fr; }
-      .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .gallery{ grid-template-columns: 1fr; }
     }
 
     .anchor{ scroll-margin-top: 130px; }
@@ -825,7 +824,6 @@
     <div class="container">
       <div class="titleWrap reveal">
         <h2 class="sectionTitle">גלריה</h2>
-        <p class="sectionSub">התמונות נטענות לפי סדר: 1.jpg, 2.jpg, 3.jpg ... לחצו להגדלה.</p>
       </div>
 
       <div class="gallery" id="galleryGrid" aria-label="גלריה"></div>
@@ -882,6 +880,9 @@
           <p class="card__text">
             נשמח לשמוע מכם לגבי שותפות, תמיכה, קביעת שיעור, או כל עניין בקהילה.
           </p>
+          <p class="card__text">
+            כתובת: שלמה המלך 10 ראשון לציון במקלט
+          </p>
           <div class="sep"></div>
           <p class="notice" style="margin:0">
             לתרומה מאובטחת:
@@ -930,7 +931,7 @@
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyw4rg4R8QMmNuQfud4o1AzTJG343CY4KekKRUxu-JV0HMrCn__oPTYsu9gd3YAqW2ozg/exec";
 
     // כמה תמונות יש לך בגלריה (שים מספר גדול, ואם חסר קובץ זה פשוט לא יוצג)
-    const GALLERY_MAX = 24; // 1.jpg ... 24.jpg
+    const GALLERY_MAX = 10; // 1.jpg ... 10.jpg
 
     // ===== Mobile menu =====
     const navToggle = document.getElementById("navToggle");
@@ -1019,6 +1020,12 @@
     const gallery = [];
     for (let i = 1; i <= GALLERY_MAX; i++) gallery.push(`${i}.jpg`);
 
+    function setMainImageByItem(item){
+      if (!item) return;
+      grid.querySelectorAll(".gItem").forEach(el => el.classList.remove("is-active"));
+      item.classList.add("is-active");
+    }
+
     // create cards; if image missing -> remove card
     gallery.forEach((src, idx) => {
       const item = document.createElement("div");
@@ -1028,33 +1035,50 @@
       item.dataset.index = String(idx);
 
       const img = document.createElement("img");
-      img.src = src;
-      img.alt = `תמונה ${idx + 1}`;
+      const fallbackSources = [
+        src,
+        `${idx + 1}.JPG`,
+        `${idx + 1}.jpeg`,
+        `${idx + 1}.JPEG`,
+        `${idx + 1}.jpg.jpg`,
+        `${idx + 1}.jpg.JPG`,
+        `${idx + 1}jpg.jpg`
+      ];
+      let sourceIdx = 0;
+      img.src = fallbackSources[sourceIdx];
+      img.alt = `${idx + 1}.jpg`;
 
       img.addEventListener("error", () => {
+        sourceIdx += 1;
+        if (sourceIdx < fallbackSources.length) {
+          img.src = fallbackSources[sourceIdx];
+          return;
+        }
         // אם קובץ לא קיים - לא מציגים את הריבוע
         item.remove();
       });
 
-      const badge = document.createElement("div");
-      badge.className = "gBadge";
-      badge.textContent = `תמונה ${idx + 1}`;
-
       item.appendChild(img);
-      item.appendChild(badge);
       grid.appendChild(item);
 
       // observe reveal for dynamically added items
       io.observe(item);
 
-      item.addEventListener("click", () => openLightbox(idx));
+      item.addEventListener("click", () => {
+        setMainImageByItem(item);
+        openLightbox(idx);
+      });
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
+          setMainImageByItem(item);
           openLightbox(idx);
         }
       });
     });
+
+    const firstItem = grid.querySelector(".gItem");
+    setMainImageByItem(firstItem);
 
     // ===== Lightbox logic (arrows + keyboard + swipe) =====
     const lb = document.getElementById("lightbox");
@@ -1078,6 +1102,7 @@
       const src = visible[currentIndex].querySelector("img").getAttribute("src");
       lbImg.src = src;
       lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
+      setMainImageByItem(visible[currentIndex]);
 
       lb.classList.add("is-open");
       lb.setAttribute("aria-hidden","false");
@@ -1099,6 +1124,7 @@
       const src = visible[currentIndex].querySelector("img").getAttribute("src");
       lbImg.src = src;
       lbChip.textContent = `תמונה ${currentIndex + 1} / ${visible.length}`;
+      setMainImageByItem(visible[currentIndex]);
     }
 
     lbClose.addEventListener("click", closeLightbox);
