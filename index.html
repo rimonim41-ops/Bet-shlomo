@@ -67,33 +67,33 @@
       display:flex;
       align-items:center;
       gap:10px;
-      min-width: 420px;
+      min-width: 300px;
       position: relative;
-      padding-inline-start: 180px;
+      padding-inline-start: 68px;
     }
     .logoWrap{
       position:relative;
-      width:282px; height:282px;
-      transform: translate(66px, 26px);
+      width:94px; height:94px;
+      transform: translate(0, 0);
       flex: 0 0 auto;
       pointer-events: none;
     }
     .logoImg{
-      width:282px; height:282px;
-      border-radius: 20px;
+      width:94px; height:94px;
+      border-radius: 16px;
       object-fit:contain;
       background: rgba(255,255,255,0.92);
       border:1px solid rgba(15,23,42,0.10);
       box-shadow: 0 8px 20px rgba(15,23,42,0.14);
-      padding: 8px;
+      padding: 6px;
       display:block;
 
       /* ניסיון להסרת גוון (אפשר לשחק עם הערכים אם צריך) */
       filter: saturate(0.6) contrast(1.06) brightness(1.05);
       mix-blend-mode: multiply;
     }
-    .brand__title{ font-weight:1000; line-height:1.08; letter-spacing:-0.3px; font-size:clamp(16px, 1.9vw, 22px); }
-    .brand__sub{ font-size:12px; color:var(--muted); margin-top:2px; }
+    .brand__title{ font-weight:1000; line-height:1.08; letter-spacing:-0.3px; font-size:clamp(11px, 0.8vw, 14px); }
+    .brand__sub{ font-size:11px; color:var(--muted); margin-top:2px; }
 
     .nav{ display:flex; align-items:center; gap:10px; }
     .nav__toggle{
@@ -558,18 +558,18 @@
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
-      .brand{ padding-inline-start: 95px; }
-      .logoWrap{ width:150px; height:150px; transform: translate(18px, 18px); }
-      .logoImg{ width:150px; height:150px; border-radius:16px; padding:6px; }
-      .brand__title{ font-size:18px; }
-      .brand__sub{ font-size:14px; }
+      .brand{ padding-inline-start: 0; }
+      .logoWrap{ width:76px; height:76px; transform: none; }
+      .logoImg{ width:76px; height:76px; border-radius:14px; padding:5px; }
+      .brand__title{ font-size:13px; }
+      .brand__sub{ font-size:11px; }
     }
     @media (max-width: 720px){
       .brand{ min-width: unset; gap:10px; }
       .brand{ padding-inline-start: 0; }
-      .logoWrap{ width:66px; height:66px; transform: translateY(8px); }
-      .logoImg{ width:66px; height:66px; border-radius:14px; padding:5px; }
-      .brand__title{ font-size:16px; }
+      .logoWrap{ width:62px; height:62px; transform: translateY(2px); }
+      .logoImg{ width:62px; height:62px; border-radius:14px; padding:5px; }
+      .brand__title{ font-size:12px; }
       .brand__sub{ font-size:11px; }
       .nav__toggle{ display:inline-flex; }
       .nav__menu{
@@ -985,8 +985,18 @@
     for (let i = 1; i <= GALLERY_MAX; i++) gallery.push(i);
 
     const captionsByIndex = {
-         1: "הרב שלמה דשן עם הרב שאול גבאי",
+      1: "הרב שלמה דשן עם הרב שאול גבאי",
       2: "בשמחה של תורה",
+      3: "בשמחה את התורה",
+      4: "במצעה הלמוד",
+      5: "בסיום מסכת",
+      6: "ראש מרכזי במסירת שיעור",
+      7: "במעשה הלמוד",
+      8: "בשיעור לצעירים",
+      9: "אירוע סיום מסכת",
+      10: "סיום מסכת",
+      11: "אירוע חיזוק",
+      12: "קדיש בסיום"
     };
 
     const mediaVariants = [
@@ -1058,7 +1068,15 @@
       if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
     });
 
-    gallery.forEach((num, idx) => {
+    async function buildGallery(){
+      const resolvedMedia = await Promise.all(gallery.map((num) => resolveMediaSource(String(num))));
+
+      const fragment = document.createDocumentFragment();
+
+      gallery.forEach((num, idx) => {
+        const found = resolvedMedia[idx];
+        if (!found) return;
+
       const item = document.createElement("div");
       item.className = "gItem reveal";
       item.dataset.index = String(idx);
@@ -1073,33 +1091,36 @@
       item.appendChild(mediaSlot);
       item.appendChild(caption);
 
-      resolveMediaSource(String(num)).then((found) => {
-        if (!found) return;
+      item.classList.add("gItem--clickable");
 
-        item.classList.add("gItem--clickable");
+      if (found.isVideo) {
+        const video = document.createElement("video");
+        video.src = found.src;
+        video.controls = true;
+        video.preload = "metadata";
+        video.setAttribute("playsinline", "");
+        video.className = "gMedia";
+        video.addEventListener("click", () => openLightbox(found.src, true, `וידאו ${num}`));
+        mediaSlot.replaceWith(video);
+      } else {
+        const img = document.createElement("img");
+        img.src = found.src;
+        img.alt = `מדיה ${num}`;
+        img.className = "gMedia";
+        img.loading = "eager";
+        img.decoding = "sync";
+        img.addEventListener("click", () => openLightbox(found.src, false, `מדיה ${num}`));
+        mediaSlot.replaceWith(img);
+      }
 
-        if (found.isVideo) {
-          const video = document.createElement("video");
-          video.src = found.src;
-          video.controls = true;
-          video.preload = "metadata";
-          video.setAttribute("playsinline", "");
-          video.className = "gMedia";
-          video.addEventListener("click", () => openLightbox(found.src, true, `וידאו ${num}`));
-          mediaSlot.replaceWith(video);
-        } else {
-          const img = document.createElement("img");
-          img.src = found.src;
-          img.alt = `מדיה ${num}`;
-          img.className = "gMedia";
-          img.addEventListener("click", () => openLightbox(found.src, false, `מדיה ${num}`));
-          mediaSlot.replaceWith(img);
-        }
-
-        grid.appendChild(item);
-        io.observe(item);
+      fragment.appendChild(item);
+      io.observe(item);
       });
-    });
+
+      grid.appendChild(fragment);
+    }
+
+    buildGallery();
   </script>
 </body>
 </html>
