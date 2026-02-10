@@ -54,6 +54,7 @@
       background: rgba(255,255,255,0.82);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
+      overflow: visible;
     }
     .header__inner{
       display:flex; align-items:center; justify-content:space-between;
@@ -65,18 +66,18 @@
     .brand{ display:flex; align-items:center; gap:10px; min-width: 420px; }
     .logoWrap{
       position:relative;
-      width:68px; height:68px;
-      transform: none;
+      width:94px; height:94px;
+      transform: translateY(16px);
       flex: 0 0 auto;
     }
     .logoImg{
-      width:68px; height:68px;
-      border-radius: 16px;
+      width:94px; height:94px;
+      border-radius: 20px;
       object-fit:contain;
       background: rgba(255,255,255,0.92);
       border:1px solid rgba(15,23,42,0.10);
       box-shadow: 0 8px 20px rgba(15,23,42,0.14);
-      padding: 6px;
+      padding: 8px;
       display:block;
 
       /* ניסיון להסרת גוון (אפשר לשחק עם הערכים אם צריך) */
@@ -389,6 +390,7 @@
       flex-direction:column;
     }
     .gItem:hover{ transform: translateY(-3px); }
+    .gItem--clickable{ cursor: zoom-in; }
     .gMedia,
     .gItem img,
     .gItem video{
@@ -411,6 +413,49 @@
       font-weight:1100;
       color:#0f172a;
       font-size: 13px;
+    }
+
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(2, 6, 23, 0.82);
+      z-index: 120;
+    }
+    .lightbox.is-open{ display:flex; }
+    .lightbox__content{
+      max-width: min(96vw, 1100px);
+      max-height: 90vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .lightbox__content img,
+    .lightbox__content video{
+      max-width: 100%;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 16px;
+      background:#fff;
+      box-shadow: 0 26px 90px rgba(15,23,42,0.5);
+    }
+    .lightbox__close{
+      position:absolute;
+      top: 16px;
+      inset-inline-start: 16px;
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:999px;
+      font-size:28px;
+      line-height:1;
+      cursor:pointer;
+      color:#fff;
+      background: rgba(15,23,42,0.55);
     }
 
     /* ===== Contact ===== */
@@ -505,15 +550,15 @@
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
-      .logoWrap{ width:56px; height:56px; }
-      .logoImg{ width:56px; height:56px; border-radius:14px; padding:5px; }
+      .logoWrap{ width:74px; height:74px; transform: translateY(10px); }
+      .logoImg{ width:74px; height:74px; border-radius:16px; padding:6px; }
       .brand__title{ font-size:18px; }
       .brand__sub{ font-size:14px; }
     }
     @media (max-width: 720px){
       .brand{ min-width: unset; gap:10px; }
-      .logoWrap{ width:48px; height:48px; }
-      .logoImg{ width:48px; height:48px; border-radius:12px; padding:4px; }
+      .logoWrap{ width:66px; height:66px; transform: translateY(8px); }
+      .logoImg{ width:66px; height:66px; border-radius:14px; padding:5px; }
       .brand__title{ font-size:16px; }
       .brand__sub{ font-size:11px; }
       .nav__toggle{ display:inline-flex; }
@@ -824,6 +869,11 @@
     </div>
   </footer>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="תצוגה מוגדלת">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="סגירה">×</button>
+    <div class="lightbox__content" id="lightboxContent"></div>
+  </div>
+
   <script>
     // ===== Settings =====
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyw4rg4R8QMmNuQfud4o1AzTJG343CY4KekKRUxu-JV0HMrCn__oPTYsu9gd3YAqW2ozg/exec";
@@ -924,43 +974,74 @@
       3: "באמצע הלימוד"
     };
 
+    const mediaVariants = [
+      (n, ext) => `${n}.${ext}`,
+      (n, ext) => `${n}.jpg.${ext}`,
+      (n, ext) => `${n}jpg.${ext}`,
+      (n, ext) => `${n}g.${ext}`
+    ];
     const mediaExtensions = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG", "webp", "WEBP", "mp4", "MP4", "webm", "WEBM", "mov", "MOV"];
 
     function isVideoExtension(ext){
       return ["mp4", "MP4", "webm", "WEBM", "mov", "MOV"].includes(ext);
     }
 
-    function resolveMediaSource(baseName, onDone){
-      const candidates = mediaExtensions.map(ext => ({
-        src: `${baseName}.${ext}`,
-        isVideo: isVideoExtension(ext)
-      }));
-      let cursor = 0;
+    async function resolveMediaSource(baseName){
+      const candidates = [];
+      mediaVariants.forEach(makeName => {
+        mediaExtensions.forEach(ext => {
+          candidates.push({
+            src: makeName(baseName, ext),
+            isVideo: isVideoExtension(ext)
+          });
+        });
+      });
 
-      const tryNext = () => {
-        if (cursor >= candidates.length) {
-          onDone(null);
-          return;
+      for (const candidate of candidates) {
+        try {
+          const res = await fetch(candidate.src, { method: "HEAD" });
+          if (res.ok) return candidate;
+        } catch (err) {
+          // no-op: try the next candidate
         }
+      }
 
-        const candidate = candidates[cursor++];
-        if (candidate.isVideo) {
-          const probe = document.createElement("video");
-          probe.preload = "metadata";
-          probe.src = candidate.src;
-          probe.onloadeddata = () => onDone(candidate);
-          probe.onerror = tryNext;
-          return;
-        }
-
-        const probe = new Image();
-        probe.onload = () => onDone(candidate);
-        probe.onerror = tryNext;
-        probe.src = candidate.src;
-      };
-
-      tryNext();
+      return null;
     }
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxContent = document.getElementById("lightboxContent");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    function closeLightbox(){
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxContent.innerHTML = "";
+    }
+
+    function openLightbox(source, isVideo, altText){
+      lightboxContent.innerHTML = "";
+      const node = document.createElement(isVideo ? "video" : "img");
+      node.src = source;
+      if (isVideo) {
+        node.controls = true;
+        node.autoplay = true;
+        node.setAttribute("playsinline", "");
+      } else {
+        node.alt = altText;
+      }
+      lightboxContent.appendChild(node);
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+    });
 
     gallery.forEach((num, idx) => {
       const item = document.createElement("div");
@@ -977,8 +1058,10 @@
       item.appendChild(mediaSlot);
       item.appendChild(caption);
 
-      resolveMediaSource(String(num), (found) => {
+      resolveMediaSource(String(num)).then((found) => {
         if (!found) return;
+
+        item.classList.add("gItem--clickable");
 
         if (found.isVideo) {
           const video = document.createElement("video");
@@ -987,12 +1070,14 @@
           video.preload = "metadata";
           video.setAttribute("playsinline", "");
           video.className = "gMedia";
+          video.addEventListener("click", () => openLightbox(found.src, true, `וידאו ${num}`));
           mediaSlot.replaceWith(video);
         } else {
           const img = document.createElement("img");
           img.src = found.src;
           img.alt = `מדיה ${num}`;
           img.className = "gMedia";
+          img.addEventListener("click", () => openLightbox(found.src, false, `מדיה ${num}`));
           mediaSlot.replaceWith(img);
         }
 
