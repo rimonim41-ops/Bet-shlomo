@@ -58,32 +58,32 @@
     .header__inner{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; padding:10px 0;
-      min-height:74px;
+      min-height:92px;
       position:relative;
     }
 
-    .brand{ display:flex; align-items:center; gap:16px; min-width: 420px; }
+    .brand{ display:flex; align-items:center; gap:20px; min-width: 520px; }
     .logoWrap{
       position:relative;
-      width:248px; height:248px;
+      width:360px; height:360px;
       transform: none;
       flex: 0 0 auto;
     }
     .logoImg{
-      width:248px; height:248px;
-      border-radius: 42px;
+      width:360px; height:360px;
+      border-radius: 52px;
       object-fit:contain;
       background: rgba(255,255,255,0.92);
       border:1px solid rgba(15,23,42,0.10);
       box-shadow: 0 18px 55px rgba(15,23,42,0.18);
-      padding: 16px;
+      padding: 20px;
       display:block;
 
       /* ניסיון להסרת גוון (אפשר לשחק עם הערכים אם צריך) */
       filter: saturate(0.6) contrast(1.06) brightness(1.05);
       mix-blend-mode: multiply;
     }
-    .brand__title{ font-weight:1000; line-height:1.05; letter-spacing:-0.3px; font-size:24px; }
+    .brand__title{ font-weight:1000; line-height:1.12; letter-spacing:-0.3px; font-size:28px; }
     .brand__sub{ font-size:16px; color:var(--muted); margin-top:4px; }
 
     .nav{ display:flex; align-items:center; gap:10px; }
@@ -375,7 +375,7 @@
     .gallery{
       display:grid;
       grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 10px;
+      gap: 14px;
     }
     .galleryMain{
       margin-bottom:16px;
@@ -401,15 +401,16 @@
       color:#0f172a;
     }
     .gItem{
-      height: 180px;
       border-radius: var(--radius);
       border:1px solid rgba(15,23,42,0.10);
-      background: linear-gradient(135deg, rgba(15,23,42,0.05), rgba(15,23,42,0.02));
+      background:#fff;
       box-shadow: 0 14px 34px rgba(15,23,42,0.06);
       overflow:hidden;
       position:relative;
       cursor:pointer;
       transition: transform .22s var(--ease);
+      display:flex;
+      flex-direction:column;
     }
     .gItem:hover{ transform: translateY(-3px); }
     .gItem.is-active{
@@ -417,7 +418,8 @@
       outline-offset: 2px;
     }
     .gItem img{
-      width:100%; height:100%;
+      width:100%;
+      height:180px;
       object-fit:cover;
       display:block;
       transform: scale(1.01);
@@ -425,17 +427,12 @@
       filter: saturate(1.02);
     }
     .gItem:hover img{ transform: scale(1.06); filter: saturate(1.08); }
-    .gBadge{
-      position:absolute;
-      inset:auto 10px 10px 10px;
-      padding:8px 10px;
-      border-radius:14px;
-      background: rgba(255,255,255,0.86);
-      border:1px solid rgba(15,23,42,0.12);
+    .gCaption{
+      padding:10px;
+      border-top:1px solid rgba(15,23,42,0.08);
+      text-align:center;
       font-weight:1100;
       color:#0f172a;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 12px 28px rgba(15,23,42,0.14);
       font-size: 13px;
     }
 
@@ -620,15 +617,15 @@
       .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .contactGrid{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
-      .logoWrap{ width:150px; height:150px; }
-      .logoImg{ width:150px; height:150px; border-radius:30px; padding:12px; }
+      .logoWrap{ width:250px; height:250px; }
+      .logoImg{ width:250px; height:250px; border-radius:36px; padding:14px; }
       .brand__title{ font-size:20px; }
       .brand__sub{ font-size:14px; }
     }
     @media (max-width: 720px){
       .brand{ min-width: unset; gap:10px; }
-      .logoWrap{ width:106px; height:106px; }
-      .logoImg{ width:106px; height:106px; border-radius:24px; padding:10px; }
+      .logoWrap{ width:180px; height:180px; }
+      .logoImg{ width:180px; height:180px; border-radius:28px; padding:10px; }
       .brand__title{ font-size:18px; }
       .brand__sub{ font-size:13px; }
       .nav__toggle{ display:inline-flex; }
@@ -859,12 +856,12 @@
     <div class="container">
       <div class="titleWrap reveal">
         <h2 class="sectionTitle">גלריה</h2>
-        <p class="sectionSub">תמונה ראשית למעלה + קוביות מתחת עם שמות הקבצים: 1.jpg עד 10.jpg. לחצו להגדלה.</p>
+        <p class="sectionSub">תמונה ראשית למעלה וקוביות מתחת. לחיצה על תמונה פותחת תצוגה גדולה עם ניווט ימינה/שמאלה.</p>
       </div>
 
       <div class="galleryMain reveal" id="galleryMain" role="button" tabindex="0" aria-label="פתח תצוגת תמונה מוגדלת">
         <img class="galleryMain__img" id="galleryMainImg" alt="תמונה ראשית בגלריה" />
-        <div class="galleryMain__caption" id="galleryMainCaption">1.jpg</div>
+        <div class="galleryMain__caption" id="galleryMainCaption">תמונה ראשית</div>
       </div>
 
       <div class="gallery" id="galleryGrid" aria-label="גלריה"></div>
@@ -910,9 +907,6 @@
 
             <div class="status" id="statusBox" role="status" aria-live="polite"></div>
 
-            <p class="notice">
-              הסקריפט קורא <b>e.parameter</b>, לכן השליחה מתבצעת בפורמט <b>application/x-www-form-urlencoded</b>.
-            </p>
           </form>
         </div>
 
@@ -999,7 +993,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // ===== Contact form -> GAS (urlencoded) =====
+    // ===== Contact form -> GAS =====
     const form = document.getElementById("contactForm");
     const statusBox = document.getElementById("statusBox");
     const sendBtn = document.getElementById("sendBtn");
@@ -1104,12 +1098,12 @@
         item.remove();
       });
 
-      const badge = document.createElement("div");
-      badge.className = "gBadge";
-      badge.textContent = `${idx + 1}.jpg`;
+      const caption = document.createElement("div");
+      caption.className = "gCaption";
+      caption.textContent = "תמונתתמונות";
 
       item.appendChild(img);
-      item.appendChild(badge);
+      item.appendChild(caption);
       grid.appendChild(item);
 
       // observe reveal for dynamically added items
@@ -1117,13 +1111,15 @@
 
       item.addEventListener("click", () => {
         setMainImageByItem(item);
-        openLightbox(idx);
+        const visibleIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(item);
+        openLightbox(visibleIndex);
       });
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           setMainImageByItem(item);
-          openLightbox(idx);
+          const visibleIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(item);
+          openLightbox(visibleIndex);
         }
       });
     });
@@ -1134,7 +1130,7 @@
     galleryMain.addEventListener("click", () => {
       const activeItem = grid.querySelector(".gItem.is-active") || grid.querySelector(".gItem");
       if (!activeItem) return;
-      const activeIndex = Number(activeItem.dataset.index || 0);
+      const activeIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(activeItem);
       openLightbox(activeIndex);
     });
     galleryMain.addEventListener("keydown", (e) => {
@@ -1142,7 +1138,7 @@
       e.preventDefault();
       const activeItem = grid.querySelector(".gItem.is-active") || grid.querySelector(".gItem");
       if (!activeItem) return;
-      const activeIndex = Number(activeItem.dataset.index || 0);
+      const activeIndex = Array.from(grid.querySelectorAll(".gItem")).indexOf(activeItem);
       openLightbox(activeIndex);
     });
 
