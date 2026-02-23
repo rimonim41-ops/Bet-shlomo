@@ -38,6 +38,7 @@
     body{
       margin:0;
       font-family:"Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      font-size: 18px;
       color:var(--text);
       background:
         radial-gradient(900px 700px at 10% 0%, rgba(37,99,235,0.10), transparent 55%),
@@ -156,11 +157,11 @@
     /* ===== Hero ===== */
     .hero{ padding: 56px 0 10px; }
     .heroBox{
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(15,23,42,0.10);
+      background: linear-gradient(155deg, rgba(255,255,255,0.95), rgba(255,255,255,0.78));
+      border: 1px solid rgba(15,23,42,0.08);
       border-radius: var(--radius2);
       box-shadow: var(--shadow2);
-      padding: 34px 18px;
+      padding: 44px 22px;
       text-align:center;
       overflow:hidden;
       position:relative;
@@ -179,19 +180,23 @@
     }
     .heroTitle{
       position:relative;
-      font-size: clamp(28px, 3.3vw, 52px);
+      font-size: clamp(36px, 4.2vw, 66px);
       margin:0 0 10px;
       line-height:1.14;
       letter-spacing:-0.8px;
       font-weight: 1100;
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #6d28d9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     .heroLead{
       position:relative;
       margin:0 auto 18px;
       color:#334155;
-      font-size:16px;
+      font-size:clamp(19px, 2vw, 25px);
       max-width: 72ch;
-      line-height:1.85;
+      line-height:1.95;
     }
 
     /* ===== Buttons ===== */
@@ -242,7 +247,7 @@
     .sectionTitle{
       margin:0;
       text-align:center;
-      font-size: 26px;
+      font-size: clamp(32px, 3vw, 44px);
       font-weight: 1100;
       letter-spacing: -0.4px;
       position:relative;
@@ -272,7 +277,8 @@
       margin:0;
       text-align:center;
       color: var(--muted);
-      line-height:1.75;
+      line-height:1.9;
+      font-size: clamp(18px, 1.8vw, 22px);
       max-width: 80ch;
       margin-inline:auto;
     }
@@ -294,7 +300,7 @@
       box-shadow: 0 22px 55px rgba(15,23,42,0.10);
     }
     .card__title{ margin:0 0 8px; font-weight:1100; letter-spacing:-0.2px; }
-    .card__text{ margin:0; color:#334155; line-height:1.85; }
+    .card__text{ margin:0; color:#334155; line-height:1.95; font-size: 18px; }
 
     .icon{
       width:46px; height:46px;
@@ -528,13 +534,28 @@
     .footer{
       padding: 22px 0 34px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 15px;
     }
     .footerRow{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; flex-wrap:wrap;
       border-top: 1px solid rgba(15,23,42,0.08);
       padding-top: 16px;
+    }
+    .footerCredit{
+      width:100%;
+      border-top: 1px solid rgba(15,23,42,0.08);
+      margin-top: 8px;
+      padding-top: 14px;
+      text-align:center;
+      color:#1e293b;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+    .footerCredit a{
+      text-decoration: underline;
+      color: #1d4ed8;
+      font-weight: 900;
     }
 
     /* Smooth reveal animations */
@@ -636,8 +657,8 @@
       <div class="heroBox reveal">
         <h1 class="heroTitle">מוסדות בית שלמה – תורה שמאירה את העיר ראשון לציון</h1>
         <p class="heroLead">
-          בית של תורה, חיזוק וחסד בלב הקהילה. אנו מחזיקים כולל אברכים, מקיימים שיעורי תורה מסודרים,
-          מפעילים מסגרות חינוך והכוונה לנוער, ומקדמים יוזמות חסד ועזרה למשפחות – במיוחד בתקופות החגים.
+          מרכז רוחני חי ותוסס שמחבר בין תורה, קהילה וחסד ברמה גבוהה. כאן תמצאו כולל אברכים משמעותי,
+          שיעורי תורה מעוררי השראה, ליווי חינוכי לנוער ותמיכה חמה למשפחות — עם עשייה יומיומית שמאירה לבבות ומחזקת בתים.
         </p>
         <div class="btnRow">
           <a class="btn btn--primary" href="https://nedar.im/QoNK" target="_blank" rel="noopener">תרומה מאובטחת</a>
@@ -652,7 +673,7 @@
     <div class="container">
       <div class="titleWrap reveal">
         <h2 class="sectionTitle">עלינו</h2>
-        <p class="sectionSub">החזקה קבועה של תורה, חינוך וחסד – לאורך כל השנה.</p>
+        <p class="sectionSub">מוסדות בית שלמה פועלים במסירות לבניית דור של אמונה, ערכים והשפעה טובה – לאורך כל השנה.</p>
       </div>
 
       <div class="grid grid--2">
@@ -875,16 +896,22 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="footerRow">
-        <div>© <span id="year"></span> מוסדות בית שלמה</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="nav__link" href="#home">דף הבית</a>
-          <a class="nav__link" href="#donate">תרומות</a>
-          <a class="nav__link" href="#contact">יצירת קשר</a>
+        <div class="footerRow">
+          <div>© <span id="year"></span> מוסדות בית שלמה</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="nav__link" href="#home">דף הבית</a>
+            <a class="nav__link" href="#donate">תרומות</a>
+            <a class="nav__link" href="#contact">יצירת קשר</a>
+          </div>
+          <div class="footerCredit">
+            נבנה על ידי י.ז.מ.אתרים. לפרטים במייל:
+            <a href="mailto:ZMF5484840@gmail.com">ZMF5484840@gmail.com</a>
+            או היכנסו לכתובת הבאה:
+            <a href="https://hidon1.github.io/a/" target="_blank" rel="noopener">https://hidon1.github.io/a/</a>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="תצוגה מוגדלת">
     <button class="lightbox__close" id="lightboxClose" type="button" aria-label="סגירה">×</button>
